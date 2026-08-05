@@ -1,0 +1,3 @@
+# robots.txt (place at https://sparkscout.com/robots.txt)
+User-agent: *
+Allow: /

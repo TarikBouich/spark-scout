@@ -1,8 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P447XY3V17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P447XY3V17');
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Spark Scout brings discovery, creation, communication, management, and reporting together — the platform where creators, brands, and agencies build partnerships.">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Spark Scout — Creator partnerships, finally organized." />
+<meta property="og:description" content="Spark Scout brings discovery, creation, communication, management, and reporting together — the platform where creators, brands, and agencies build partnerships." />
+<meta property="og:image" content="./images/logo-only.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Spark Scout — Creator partnerships, finally organized." />
+<meta name="twitter:description" content="Spark Scout brings discovery, creation, communication, management, and reporting together — the platform where creators, brands, and agencies build partnerships." />
+<meta name="twitter:image" content="./images/logo-only.png" />
+<meta name="apple-mobile-web-app-title" content="Spark Scout" />
+<link rel="icon" type="image/png" href="./images/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
+<link rel="shortcut icon" href="./images/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png" />
+<link rel="manifest" href="./site.webmanifest" />
 <title>Spark Scout — Creator partnerships, finally organized.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -262,7 +288,16 @@
   .ptoggle{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:4px;margin-top:20px}
   .ptoggle button{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:9px 18px;border-radius:8px;cursor:pointer;color:var(--ink-2)}
   .ptoggle button.on{background:var(--accent);color:#fff}
-  .bswitch{display:inline-flex;align-items:center;gap:12px;margin-top:14px;font-family:inherit;font-weight:600;font-size:13px}
+  .bswitch{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:14px;
+    font-family:inherit;
+    font-weight:600;
+    font-size:13px;
+    justify-content:center;
+  }
   .bswitch .bl{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:4px 0;cursor:pointer;color:var(--ink-2);transition:color .25s}
   .bswitch .bl.on{color:var(--accent)}
   .bswitch .switch{width:52px;height:28px;border-radius:50px;background:var(--surface-2);border:1px solid var(--line);position:relative;cursor:pointer;transition:background .25s,border-color .25s;flex:none}
@@ -402,9 +437,9 @@
 <div id="progress"></div>
 
 <nav><div class="wrap nav-in">
-  <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
-  <div class="nav-l"><a href="#platform">Platform</a><a href="#creators">Creators</a><a href="#brands">Brands</a><a href="#agencies">Agencies</a><a href="#pricing">Pricing</a></div>
-  <div class="nav-r"><span class="li">Login</span><div class="toggle" id="themeToggle"><span class="k" id="themeK">☾</span></div><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Get Started Free</a></div>
+  <div class="logo"><img src="images/logo-only.png" alt="Spark Scout logo" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
+  <div class="nav-l"><a href="#platform" title="Platform">Platform</a><a href="#creators" title="Creators">Creators</a><a href="#brands" title="Brands">Brands</a><a href="#agencies" title="Agencies">Agencies</a><a href="#pricing" title="Pricing">Pricing</a></div>
+  <div class="nav-r"><span class="li">Login</span><div class="toggle" id="themeToggle"><span class="k" id="themeK">☾</span></div><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Get Started Free">Get Started Free</a></div>
 </div></nav>
 
 <!-- HERO -->
@@ -415,7 +450,7 @@
   <div class="wrap">
     <h1 class="stag">Creator partnerships,<br><span class="hl">finally organized.</span></h1>
     <p class="lede stag" style="animation-delay:.08s">Everything creators, brands, and agencies need to discover opportunities, build partnerships, create content, manage campaigns, stay organized, and measure results, all in one place.</p>
-    <div class="hero-cta stag" style="animation-delay:.16s"><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Start Free <span class="ar">→</span></a><a class="btn btn-g" href="#platform">Explore Features</a></div>
+    <div class="hero-cta stag" style="animation-delay:.16s"><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Start Free">Start Free <span class="ar">→</span></a><a class="btn btn-g" href="#platform" title="Explore Features">Explore Features</a></div>
     <div class="mockwrap stag" style="animation-delay:.26s" data-parallax="-0.1"><div class="float-badge fb1" data-bob="8" data-mouse="26" data-parallax="-0.3"><span class="big">+32% reach</span> this month</div><div class="float-badge fb2" data-bob="6" data-mouse="-20" data-parallax="-0.22">💸 Invoice paid · $2,400</div><div class="float-badge fb3" data-bob="7" data-mouse="15" data-parallax="-0.26">✨ 8 new matches</div><div class="browser" id="heroMock">
       <div class="br-bar"><i></i><i></i><i></i><span class="u">app.sparkscout.com/dashboard</span></div>
       <div class="dash">
@@ -506,9 +541,9 @@
   <div class="wrap">
     <h2 class="sec-head">Built for <span class="hl">Creators, Brands, and Agencies.</span></h2>
     <div class="bf3">
-      <div class="bfc"><h4>Build. Create. Collaborate. Get Paid.</h4><p>Build your audience, create content, manage partnerships, and grow your creator business from one platform.</p><a class="btn btn-g" href="#creators">Discover how <span class="ar">→</span></a></div>
-      <div class="bfc"><h4>Discover. Launch. Manage. Grow.</h4><p>Find creators, launch campaigns, manage deliverables, and measure performance from one platform.</p><a class="btn btn-g" href="#brands">Discover how <span class="ar">→</span></a></div>
-      <div class="bfc"><h4>Manage. Coordinate. Deliver. Scale.</h4><p>Discover creators, review Spark Decks, launch gifted or paid campaigns, approve content, connect Shopify, and keep partnerships moving.</p><a class="btn btn-g" href="#agencies">Discover how <span class="ar">→</span></a></div>
+      <div class="bfc"><h4>Build. Create. Collaborate. Get Paid.</h4><p>Build your audience, create content, manage partnerships, and grow your creator business from one platform.</p><a class="btn btn-g" href="#creators" title="Discover how creators use Spark Scout">Discover how <span class="ar">→</span></a></div>
+      <div class="bfc"><h4>Discover. Launch. Manage. Grow.</h4><p>Find creators, launch campaigns, manage deliverables, and measure performance from one platform.</p><a class="btn btn-g" href="#brands" title="Discover how brands use Spark Scout">Discover how <span class="ar">→</span></a></div>
+      <div class="bfc"><h4>Manage. Coordinate. Deliver. Scale.</h4><p>Discover creators, review Spark Decks, launch gifted or paid campaigns, approve content, connect Shopify, and keep partnerships moving.</p><a class="btn btn-g" href="#agencies" title="Discover how agencies use Spark Scout">Discover how <span class="ar">→</span></a></div>
     </div>
   </div>
 </section>
@@ -544,7 +579,7 @@
         <p class="role-intro">From your Link in Bio and creator portfolio to content creation, campaigns, brand partnerships, and payments, everything lives in one place.</p>
         <div class="role-sub">Grow your creator business</div>
         <ul class="benefits"><li>Get discovered by brands</li><li>Build a professional creator portfolio</li><li>Find campaigns and partnership opportunities</li><li>Create content faster with AI tools</li><li>Keep communication, contracts, and deliverables organized</li><li>Send invoices and get paid</li></ul>
-        <a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup">View Creator Plans <span class="ar">→</span></a>
+        <a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="View Creator Plans">View Creator Plans <span class="ar">→</span></a>
       </div>
       <div class="role-vis">
         <div class="deckphone"><div class="deckscreen">
@@ -579,7 +614,7 @@
         <p class="role-intro">Find creators, launch campaigns, send products, manage partnerships, and measure performance from one platform.</p>
         <div class="role-sub">Scale your creator marketing</div>
         <ul class="benefits"><li>Discover creators that align with your brand</li><li>Launch gifted and paid campaigns</li><li>Manage creator communication and deliverables</li><li>Send products directly from Shopify</li><li>Track campaign performance and results</li><li>Keep everything organized in one place</li></ul>
-        <a class="btn btn-p" href="https://app.sparkscout.com/auth?type=brand&tab=signup">View Brand Plans <span class="ar">→</span></a>
+        <a class="btn btn-p" href="https://app.sparkscout.com/auth?type=brand&tab=signup" title="View Brand Plans">View Brand Plans <span class="ar">→</span></a>
       </div>
       <div class="role-vis">
         <div class="mock">
@@ -606,7 +641,7 @@
         <p class="role-intro">Manage creators, support brands, coordinate campaigns, and keep every client relationship organized from one platform.</p>
         <div class="role-sub">Scale without adding complexity</div>
         <ul class="benefits"><li>Manage creators and brands from one workspace</li><li>Coordinate campaigns across multiple clients</li><li>Keep communication, deliverables, and approvals organized</li><li>Improve visibility for internal teams and clients</li><li>Eliminate disconnected tools and reporting systems</li><li>Scale operations without increasing overhead</li></ul>
-        <a class="btn btn-p" href="https://app.sparkscout.com/auth?type=agency&tab=signup">View Agency Plans <span class="ar">→</span></a>
+        <a class="btn btn-p" href="https://app.sparkscout.com/auth?type=agency&tab=signup" title="View Agency Plans">View Agency Plans <span class="ar">→</span></a>
       </div>
       <div class="role-vis">
         <div class="mock">
@@ -666,22 +701,22 @@
     <span class="ey">Ready</span>
     <h2>The best partnerships <span class="hl">start with a spark.</span></h2>
     <p>Bring discovery, creation, communication, management, and reporting together in one platform.</p>
-    <a class="btn btn-p" style="font-size:15px;padding:15px 26px" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Start Free <span class="ar">→</span></a>
+    <a class="btn btn-p" style="font-size:15px;padding:15px 26px" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Start Free">Start Free <span class="ar">→</span></a>
   </div>
 </section>
 
 <footer><div class="wrap">
   <div class="foot-top">
-    <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
+    <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="Spark Scout logo" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
 
-    <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#"><img src="images/google-store.svg"></a><a href="#"><img src="images/apple-store.svg"></a></div>
+    <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#" title="Get Spark Scout on Google Play"><img src="images/google-store.svg" alt="Get it on Google Play"></a><a href="#" title="Download Spark Scout on the App Store"><img src="images/apple-store.svg" alt="Download on the App Store"></a></div>
   </div>
   <div class="foot-links" style="margin-bottom:20px">
-    <a href="https://sparkscout.com/policies/privacy-policy.html">Privacy Policy</a>
-    <a href="https://sparkscout.com/policies/terms-of-service.html">Terms of Service</a>
-    <a href="https://sparkscout.com/policies/payment-terms.html">Payment Terms</a>
-    <a href="https://sparkscout.com/policies/account-deletion.html">Account Deletion</a>
-    <a href="https://sparkscout.com/policies/data-sharing-opt-out.html">Data Sharing Opt-Out</a>
+    <a href="https://sparkscout.com/policies/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
+    <a href="https://sparkscout.com/policies/terms-of-service.html" title="Terms of Service">Terms of Service</a>
+    <a href="https://sparkscout.com/policies/payment-terms.html" title="Payment Terms">Payment Terms</a>
+    <a href="https://sparkscout.com/policies/account-deletion.html" title="Account Deletion">Account Deletion</a>
+    <a href="https://sparkscout.com/policies/data-sharing-opt-out.html" title="Data Sharing Opt-Out">Data Sharing Opt-Out</a>
   </div>
   <div class="foot-bottom"><span>© 2026 Spark Scout</span><span>Discover · Build · Create · Communicate · Manage · Measure</span></div>
 </div></footer>
@@ -763,7 +798,7 @@ function renderPlans(){
   const g=PRICING[prole];
   document.getElementById('plans').innerHTML=g.plans.map((p,i)=>{
     const isFree=p.p_m==='$0',price=bill==='m'?p.p_m:p.p_a,suffix=bill==='m'?'/mo':'/yr',note=bill==='a'&&!isFree?'billed annually · save 20%':'',url=p.l+(bill==='a'&&!isFree?'&billing=annual':'');
-    return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>'+suffix+'</small>'}</div><div class="psave">${note}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+    return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>'+suffix+'</small>'}</div><div class="psave">${note}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}" title="${i===0?'Try For Free':'Choose '+p.n}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
   }).join('');
 }
 const plansEl=document.getElementById('plans');

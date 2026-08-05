@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Simple plans that scale with you. Free to start, upgrade when you need more tools — every paid plan discounted 20% when billed annually.">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Pricing — Spark Scout" />
+<meta property="og:description" content="Simple plans that scale with you. Free to start, upgrade when you need more tools." />
+<meta property="og:image" content="./images/logo-only.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Pricing — Spark Scout" />
+<meta name="twitter:description" content="Simple plans that scale with you. Free to start, upgrade when you need more tools." />
+<meta name="twitter:image" content="./images/logo-only.png" />
 <title>Pricing — Spark Scout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,9 +91,9 @@
 <div id="progress" style="position:fixed;top:0;left:0;height:3px;width:100%;background:var(--hl);transform:scaleX(0);transform-origin:left;z-index:100;will-change:transform"></div>
 
 <nav><div class="wrap nav-in">
-  <div class="logo"><a href="index.html"><img src="images/logo-only.png" loading="lazy" alt="" style="width:23px;height:23px;border-radius:7px"></a> <a href="index.html">Spark Scout</a></div>
-  <div class="nav-l"><a href="index.html#platform">Platform</a><a href="index.html#creators">Creators</a><a href="index.html#brands">Brands</a><a href="index.html#agencies">Agencies</a><a href="pricing.html" class="on">Pricing</a></div>
-  <div class="nav-r"><span class="li">Login</span><div class="toggle" id="themeToggle"><span class="k" id="themeK">☾</span></div><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Get Started Free</a></div>
+  <div class="logo"><a href="index.html"><img src="images/logo-only.png" loading="lazy" alt="Spark Scout logo" style="width:23px;height:23px;border-radius:7px"></a> <a href="index.html">Spark Scout</a></div>
+  <div class="nav-l"><a href="index.html#platform" title="Platform">Platform</a><a href="index.html#creators" title="Creators">Creators</a><a href="index.html#brands" title="Brands">Brands</a><a href="index.html#agencies" title="Agencies">Agencies</a><a href="pricing.html" class="on" title="Pricing">Pricing</a></div>
+  <div class="nav-r"><span class="li">Login</span><div class="toggle" id="themeToggle"><span class="k" id="themeK">☾</span></div><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Get Started Free">Get Started Free</a></div>
 </div></nav>
 
 <section id="pricing">
@@ -100,15 +111,15 @@
 
 <footer><div class="wrap">
   <div class="foot-top">
-    <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
-    <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#"><img src="images/google-store.svg"></a><a href="#"><img src="images/apple-store.svg"></a></div>
+    <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="Spark Scout logo" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
+    <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#" title="Get Spark Scout on Google Play"><img src="images/google-store.svg" alt="Get it on Google Play"></a><a href="#" title="Download Spark Scout on the App Store"><img src="images/apple-store.svg" alt="Download on the App Store"></a></div>
   </div>
   <div class="foot-links" style="margin-bottom:20px">
-    <a href="https://sparkscout.com/policies/privacy-policy.html">Privacy Policy</a>
-    <a href="https://sparkscout.com/policies/terms-of-service.html">Terms of Service</a>
-    <a href="https://sparkscout.com/policies/payment-terms.html">Payment Terms</a>
-    <a href="https://sparkscout.com/policies/account-deletion.html">Account Deletion</a>
-    <a href="https://sparkscout.com/policies/data-sharing-opt-out.html">Data Sharing Opt-Out</a>
+    <a href="https://sparkscout.com/policies/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
+    <a href="https://sparkscout.com/policies/terms-of-service.html" title="Terms of Service">Terms of Service</a>
+    <a href="https://sparkscout.com/policies/payment-terms.html" title="Payment Terms">Payment Terms</a>
+    <a href="https://sparkscout.com/policies/account-deletion.html" title="Account Deletion">Account Deletion</a>
+    <a href="https://sparkscout.com/policies/data-sharing-opt-out.html" title="Data Sharing Opt-Out">Data Sharing Opt-Out</a>
   </div>
   <div class="foot-bottom"><span>© 2026 Spark Scout</span><span>Discover · Build · Create · Communicate · Manage · Measure</span></div>
 </div></footer>
@@ -146,7 +157,7 @@ function renderPlans(){
   const g=PRICING[prole],bill=document.querySelector('#btoggle .on').dataset.b;
   document.getElementById('plans').innerHTML=g.plans.map((p,i)=>{
     const isFree=p.p_m==='$0',price=bill==='m'?p.p_m:p.p_a,suffix=bill==='m'?'/mo':'/yr',note=bill==='a'&&!isFree?'billed annually · save 20%':'',url=p.l+(bill==='a'&&!isFree?'&billing=annual':'');
-    return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>'+suffix+'</small>'}</div><div class="psave">${note}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+    return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>'+suffix+'</small>'}</div><div class="psave">${note}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}" title="${i===0?'Try For Free':'Choose '+p.n}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
   }).join('');
 }
 document.querySelectorAll('#ptoggle button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#ptoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');prole=b.dataset.r;renderPlans();}));
