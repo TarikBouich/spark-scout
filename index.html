@@ -2,13 +2,10 @@
 <html lang="en" data-theme="dark">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P447XY3V17"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P447XY3V17');
+  window.addEventListener('load',()=>{const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-P447XY3V17';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-P447XY3V17');});
 </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -426,7 +423,7 @@
   .float-badge.fb1{top:8%;right:-2%}
   .float-badge.fb2{bottom:14%;left:-2%}
   .float-badge.fb3{top:46%;left:-3%}
-  .stag{opacity:0;animation:riseIn .9s cubic-bezier(.16,1,.3,1) forwards}
+  .stag{opacity:0;animation:riseIn .55s cubic-bezier(.16,1,.3,1) forwards}
   @keyframes riseIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
   @media(max-width:760px){.float-badge{display:none}.watermark{font-size:34vw}}
   @media(max-width:414px){.btn-p{font-size:10px}.foot-top .logo img{width:100%}.js .pf-block.rev .pf-copy.reveal,.js .pf-block .pf-copy.reveal,.js .role-grid.rev .role-copy.reveal,.js .role-grid .role-copy.reveal{transform:none}}
@@ -452,9 +449,9 @@
   <div class="glow glow-c" style="width:380px;height:380px;bottom:-200px;left:36%" data-parallax="0.16"></div>
   <div class="wrap">
     <h1 class="stag">Creator partnerships,<br><span class="hl">finally organized.</span></h1>
-    <p class="lede stag" style="animation-delay:.08s">Everything creators, brands, and agencies need to discover opportunities, build partnerships, create content, manage campaigns, stay organized, and measure results, all in one place.</p>
-    <div class="hero-cta stag" style="animation-delay:.16s"><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Start Free">Start Free <span class="ar">→</span></a><a class="btn btn-g" href="#platform" title="Explore Features">Explore Features</a></div>
-    <div class="mockwrap stag" style="animation-delay:.26s" data-parallax="-0.1"><div class="float-badge fb1" data-bob="8" data-mouse="26" data-parallax="-0.3"><span class="big">+32% reach</span> this month</div><div class="float-badge fb2" data-bob="6" data-mouse="-20" data-parallax="-0.22">💸 Invoice paid · $2,400</div><div class="float-badge fb3" data-bob="7" data-mouse="15" data-parallax="-0.26">✨ 8 new matches</div><div class="browser" id="heroMock">
+    <p class="lede stag" style="animation-delay:.05s">Everything creators, brands, and agencies need to discover opportunities, build partnerships, create content, manage campaigns, stay organized, and measure results, all in one place.</p>
+    <div class="hero-cta stag" style="animation-delay:.1s"><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Start Free">Start Free <span class="ar">→</span></a><a class="btn btn-g" href="#platform" title="Explore Features">Explore Features</a></div>
+    <div class="mockwrap stag" style="animation-delay:.16s" data-parallax="-0.1"><div class="float-badge fb1" data-bob="8" data-mouse="26" data-parallax="-0.3"><span class="big">+32% reach</span> this month</div><div class="float-badge fb2" data-bob="6" data-mouse="-20" data-parallax="-0.22">💸 Invoice paid · $2,400</div><div class="float-badge fb3" data-bob="7" data-mouse="15" data-parallax="-0.26">✨ 8 new matches</div><div class="browser" id="heroMock">
       <div class="br-bar"><i></i><i></i><i></i><span class="u">app.sparkscout.com/dashboard</span></div>
       <div class="dash">
         <div class="d-main">
@@ -846,14 +843,13 @@ document.getElementById('chips').innerHTML=TOOLS.map(t=>`<span class="chip dead"
   ['.final',[{c:'glow-a',s:480,pos:'top:-160px;left:26%',px:0.3}]]
  ].forEach(([sel,list])=>{const sec=document.querySelector(sel);if(sec)addGlows(sec,list);});
 
- const layers=[...document.querySelectorAll('[data-parallax]')].map((el,i)=>({el,speed:parseFloat(el.dataset.parallax)||0,mouse:parseFloat(el.dataset.mouse)||0,bob:parseFloat(el.dataset.bob)||0,skew:el.hasAttribute('data-skew'),phase:i*1.7,y:0,x:0}));
+ const layers=[...document.querySelectorAll('[data-parallax]')].map((el,i)=>{const r=el.getBoundingClientRect();return {el,speed:parseFloat(el.dataset.parallax)||0,mouse:parseFloat(el.dataset.mouse)||0,bob:parseFloat(el.dataset.bob)||0,skew:el.hasAttribute('data-skew'),phase:i*1.7,y:0,x:0,base:r.top+scrollY,h:r.height};});
  const heroMock=document.getElementById('heroMock'),hero=document.querySelector('.hero'),progress=document.getElementById('progress');
  let mx=0,my=0,tmx=0,tmy=0;
  if(hero){hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();tmx=((e.clientX-r.left)/r.width-.5)*2;tmy=((e.clientY-r.top)/r.height-.5)*2;});hero.addEventListener('mouseleave',()=>{tmx=0;tmy=0;});}
  let lastSy=scrollY,vel=0;
  function frame(now){const vh=innerHeight,t=now/1000;mx+=(tmx-mx)*.08;my+=(tmy-my)*.08;const sy=scrollY;vel+=((sy-lastSy)-vel)*.12;lastSy=sy;const sk=Math.max(-3.5,Math.min(3.5,vel*.05));
-  for(const L of layers){L.r=L.el.getBoundingClientRect();}
-  for(const L of layers){const r=L.r;const trueTop=r.top-L.y;const delta=(trueTop+r.height/2)-vh/2;let ty=-delta*L.speed;if(L.bob)ty+=Math.sin(t*1.4+L.phase)*L.bob;L.y+=(ty-L.y)*.1;const tx=mx*L.mouse;L.x+=(tx-L.x)*.08;let tr=`translate3d(${L.x.toFixed(1)}px,${L.y.toFixed(1)}px,0)`;if(L.skew)tr+=` skewY(${sk.toFixed(2)}deg)`;L.el.style.transform=tr;}
+  for(const L of layers){const delta=(L.base-sy+L.h/2)-vh/2;let ty=-delta*L.speed;if(L.bob)ty+=Math.sin(t*1.4+L.phase)*L.bob;L.y+=(ty-L.y)*.1;const tx=mx*L.mouse;L.x+=(tx-L.x)*.08;let tr=`translate3d(${L.x.toFixed(1)}px,${L.y.toFixed(1)}px,0)`;if(L.skew)tr+=` skewY(${sk.toFixed(2)}deg)`;L.el.style.transform=tr;}
   if(heroMock)heroMock.style.transform=`rotateY(${(mx*6).toFixed(2)}deg) rotateX(${(-my*4).toFixed(2)}deg)`;
   if(progress){const max=document.documentElement.scrollHeight-vh;progress.style.transform=`scaleX(${max>0?(sy/max).toFixed(4):0})`;}
   requestAnimationFrame(frame);}
