@@ -263,11 +263,12 @@
   .ptoggle button{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:9px 18px;border-radius:8px;cursor:pointer;color:var(--ink-2)}
   .ptoggle button.on{background:var(--accent);color:#fff}
   .bswitch{display:inline-flex;align-items:center;gap:12px;margin-top:14px;font-family:inherit;font-weight:600;font-size:13px}
-  .bswitch .sw{position:relative;display:inline-flex;width:230px;background:var(--surface-2);border:1px solid var(--line);border-radius:50px;padding:4px}
-  .bswitch .sw .knob{position:absolute;top:4px;left:4px;bottom:4px;width:calc(50% - 4px);border-radius:50px;background:var(--accent);transition:transform .25s ease;z-index:0}
-  .bswitch .sw[data-b="a"] .knob{transform:translateX(100%)}
-  .bswitch .sw button{flex:1;position:relative;z-index:1;border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:9px 0;border-radius:50px;cursor:pointer;color:var(--ink-2);transition:color .25s}
-  .bswitch .sw button.on{color:#fff}
+  .bswitch .bl{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:4px 0;cursor:pointer;color:var(--ink-2);transition:color .25s}
+  .bswitch .bl.on{color:var(--accent)}
+  .bswitch .switch{width:52px;height:28px;border-radius:50px;background:var(--surface-2);border:1px solid var(--line);position:relative;cursor:pointer;transition:background .25s,border-color .25s;flex:none}
+  .bswitch .switch:after{content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:var(--ink-2);transition:transform .25s,background .25s}
+  .bswitch .switch.on{background:var(--accent);border-color:var(--accent)}
+  .bswitch .switch.on:after{transform:translateX(26px);background:#fff}
   .bswitch .save{font-size:11px;font-weight:700;color:#1f9d57;background:rgba(31,157,87,.12);padding:3px 9px;border-radius:20px}
   .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;align-items:start}
   .plan{border:1.5px solid var(--line);border-radius:18px;background:var(--surface);padding:26px 22px;display:flex;flex-direction:column;position:relative;text-align:left}
@@ -644,11 +645,9 @@
     <p class="sec-sub">Choose the plan that's right for you.</p>
     <div class="ptoggle" id="ptoggle"><button class="on" data-r="creators">Creators</button><button data-r="brands">Brands</button><button data-r="agencies">Agencies</button></div>
     <div class="bswitch">
-      <div class="sw" id="btoggle" data-b="m">
-        <span class="knob"></span>
-        <button class="on" data-b="m">Monthly</button>
-        <button data-b="a">Yearly</button>
-      </div>
+      <button class="bl on" data-b="m">Monthly</button>
+      <button type="button" class="switch" id="btoggle" role="switch" aria-checked="false" aria-label="Billing period"></button>
+      <button class="bl" data-b="a">Yearly</button>
       <span class="save">SAVE 20%</span>
     </div>
     <div class="plans" id="plans"></div>
@@ -751,9 +750,17 @@ const PRICING={
     ]
   }
 };
-let prole='creators';
+let prole='creators',bill='m';
+function setBill(b){
+  bill=b;
+  document.querySelectorAll('.bswitch .bl').forEach(x=>x.classList.toggle('on',x.dataset.b===b));
+  const sw=document.getElementById('btoggle');
+  sw.classList.toggle('on',b==='a');
+  sw.setAttribute('aria-checked',b==='a');
+  renderPlans();
+}
 function renderPlans(){
-  const g=PRICING[prole],bill=document.querySelector('#btoggle .on').dataset.b;
+  const g=PRICING[prole];
   document.getElementById('plans').innerHTML=g.plans.map((p,i)=>{
     const isFree=p.p_m==='$0',price=bill==='m'?p.p_m:p.p_a,suffix=bill==='m'?'/mo':'/yr',note=bill==='a'&&!isFree?'billed annually · save 20%':'',url=p.l+(bill==='a'&&!isFree?'&billing=annual':'');
     return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>'+suffix+'</small>'}</div><div class="psave">${note}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
@@ -762,7 +769,9 @@ function renderPlans(){
 const plansEl=document.getElementById('plans');
 if(plansEl){
   document.querySelectorAll('#ptoggle button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#ptoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');prole=b.dataset.r;renderPlans();}));
-  document.querySelectorAll('#btoggle button').forEach(b=>b.addEventListener('click',()=>{const sw=document.getElementById('btoggle');document.querySelectorAll('#btoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');sw.dataset.b=b.dataset.b;renderPlans();}));
+  document.querySelectorAll('.bswitch .bl').forEach(x=>x.addEventListener('click',()=>setBill(x.dataset.b)));
+  const sw=document.getElementById('btoggle');
+  if(sw)sw.addEventListener('click',()=>setBill(sw.classList.contains('on')?'m':'a'));
   renderPlans();
 }
 
