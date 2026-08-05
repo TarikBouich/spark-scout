@@ -262,6 +262,13 @@
   .ptoggle{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:4px;margin-top:20px}
   .ptoggle button{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:9px 18px;border-radius:8px;cursor:pointer;color:var(--ink-2)}
   .ptoggle button.on{background:var(--accent);color:#fff}
+  .bswitch{display:inline-flex;align-items:center;gap:12px;margin-top:14px;font-family:inherit;font-weight:600;font-size:13px}
+  .bswitch .sw{position:relative;display:inline-flex;width:230px;background:var(--surface-2);border:1px solid var(--line);border-radius:50px;padding:4px}
+  .bswitch .sw .knob{position:absolute;top:4px;left:4px;bottom:4px;width:calc(50% - 4px);border-radius:50px;background:var(--accent);transition:transform .25s ease;z-index:0}
+  .bswitch .sw[data-b="a"] .knob{transform:translateX(100%)}
+  .bswitch .sw button{flex:1;position:relative;z-index:1;border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:9px 0;border-radius:50px;cursor:pointer;color:var(--ink-2);transition:color .25s}
+  .bswitch .sw button.on{color:#fff}
+  .bswitch .save{font-size:11px;font-weight:700;color:#1f9d57;background:rgba(31,157,87,.12);padding:3px 9px;border-radius:20px}
   .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;align-items:start}
   .plan{border:1.5px solid var(--line);border-radius:18px;background:var(--surface);padding:26px 22px;display:flex;flex-direction:column;position:relative;text-align:left}
   .plan.feat{border-color:transparent;background:linear-gradient(180deg,rgba(124,92,255,.16),var(--surface));box-shadow:0 24px 50px -26px var(--glow)}
@@ -269,8 +276,9 @@
   .plan .rb{position:absolute;top:-11px;left:22px;background:var(--accent);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:6px}
   .plan .pn{font-weight:700;font-size:17px;margin-bottom:5px}
   .plan .pd{font-size:12px;color:var(--ink-2);margin-bottom:14px;min-height:34px}
-  .plan .pp{font-size:34px;font-weight:900;letter-spacing:-0.04em;margin-bottom:16px}
+  .plan .pp{font-size:34px;font-weight:900;letter-spacing:-0.04em;margin-bottom:4px}
   .plan .pp small{font-size:13px;font-weight:500;color:var(--ink-faint)}
+  .plan .psave{font-size:11px;color:#1f9d57;font-weight:600;margin-bottom:14px;min-height:14px}
   .plan .btn{width:100%;justify-content:center;margin-bottom:18px}
   .plan ul{list-style:none;display:grid;gap:9px}
   .plan li{font-size:12.5px;color:var(--ink-2);display:flex;gap:9px;align-items:flex-start}
@@ -394,7 +402,7 @@
 
 <nav><div class="wrap nav-in">
   <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
-  <div class="nav-l"><a href="#platform">Platform</a><a href="#creators">Creators</a><a href="#brands">Brands</a><a href="#agencies">Agencies</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav-l"><a href="#platform">Platform</a><a href="#creators">Creators</a><a href="#brands">Brands</a><a href="#agencies">Agencies</a><a href="#pricing">Pricing</a></div>
   <div class="nav-r"><span class="li">Login</span><div class="toggle" id="themeToggle"><span class="k" id="themeK">☾</span></div><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Get Started Free</a></div>
 </div></nav>
 
@@ -628,17 +636,24 @@
   </div>
 </section>
 
-<!-- PRICING
+<!-- PRICING -->
 <section id="pricing" class="center">
   <div class="wrap">
     <span class="ey">Pricing</span>
     <h2 class="sec-head"><span class="hl">Free to start.</span> Upgrade when you need more tools.</h2>
     <p class="sec-sub">Choose the plan that's right for you.</p>
     <div class="ptoggle" id="ptoggle"><button class="on" data-r="creators">Creators</button><button data-r="brands">Brands</button><button data-r="agencies">Agencies</button></div>
+    <div class="bswitch">
+      <div class="sw" id="btoggle" data-b="m">
+        <span class="knob"></span>
+        <button class="on" data-b="m">Monthly</button>
+        <button data-b="a">Yearly</button>
+      </div>
+      <span class="save">SAVE 20%</span>
+    </div>
     <div class="plans" id="plans"></div>
   </div>
 </section>
--->
 
 <!-- FAQ -->
 <section style="padding-top:20px">
@@ -738,14 +753,18 @@ const PRICING={
 };
 let prole='creators';
 function renderPlans(){
-  const g=PRICING[prole];
+  const g=PRICING[prole],bill=document.querySelector('#btoggle .on').dataset.b;
   document.getElementById('plans').innerHTML=g.plans.map((p,i)=>{
-    const price=p.p_m,isFree=price==='$0',url=i===0?p.l:p.l+'&billing=monthly';
-    return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>/mo</small>'}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+    const isFree=p.p_m==='$0',price=bill==='m'?p.p_m:p.p_a,suffix=bill==='m'?'/mo':'/yr',note=bill==='a'&&!isFree?'billed annually · save 20%':'',url=p.l+(bill==='a'&&!isFree?'&billing=annual':'');
+    return `<div class="plan ${i===1?'feat':''}">${i===1?'<span class="rb">Most popular</span>':''}<div class="pn">${p.n}</div><div class="pd">${p.s}</div><div class="pp">${isFree?'Free':price}${isFree?'':'<small>'+suffix+'</small>'}</div><div class="psave">${note}</div><a class="btn ${i===1?'btn-p':'btn-g'}" href="${url}">${i===0?'Try For Free':'Choose '+p.n} →</a><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
   }).join('');
 }
 const plansEl=document.getElementById('plans');
-if(plansEl){document.querySelectorAll('#ptoggle button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#ptoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');prole=b.dataset.r;renderPlans();}));renderPlans();}
+if(plansEl){
+  document.querySelectorAll('#ptoggle button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#ptoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');prole=b.dataset.r;renderPlans();}));
+  document.querySelectorAll('#btoggle button').forEach(b=>b.addEventListener('click',()=>{const sw=document.getElementById('btoggle');document.querySelectorAll('#btoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');sw.dataset.b=b.dataset.b;renderPlans();}));
+  renderPlans();
+}
 
 /* faq */
 const FAQ=[['What is Spark Scout?','One platform where creators, brands, and agencies discover opportunities, build partnerships, create content, manage campaigns, stay organized, and measure results.'],['Is it free to start?','Yes. The Free plan lets you build your profile, explore the platform, and run partnerships. Upgrade to Growth or Pro when you need more.'],['What is a Spark Deck?','Your creator profile and Link in Bio: featured work, audience, rates, reviews, and verification in one shareable deck brands book from.'],['Can brands send products through Shopify?','Yes. Connect Shopify, select products, send gifts, collect shipping info, and track fulfillment inside the campaign.'],['Who is Spark Scout for?','Creators, brands, and agencies, each with a tailored workspace and its own plans.']];
