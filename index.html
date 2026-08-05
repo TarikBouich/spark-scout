@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  html[data-theme="dark"]{--bg:#08070D;--bg-2:#0D0C15;--surface:#15131F;--surface-2:#1D1B2A;--ink:#F5F3F8;--ink-2:#A8A4B6;--ink-faint:#6E6A7C;--line:rgba(255,255,255,.10);--line-soft:rgba(255,255,255,.06);--glow:rgba(124,92,255,.5);--shadow:0 24px 60px -30px rgba(0,0,0,.85);--purple:linear-gradient(150deg,#3a1d8a,#20114f)}
+  html[data-theme="dark"]{--bg:#08070D;--bg-2:#0D0C15;--surface:#15131F;--surface-2:#1D1B2A;--ink:#F5F3F8;--ink-2:#A8A4B6;--ink-faint:#8A85A0;--line:rgba(255,255,255,.10);--line-soft:rgba(255,255,255,.06);--glow:rgba(124,92,255,.5);--shadow:0 24px 60px -30px rgba(0,0,0,.85);--purple:linear-gradient(150deg,#3a1d8a,#20114f)}
   html[data-theme="light"]{--bg:#F1EEF8;--bg-2:#E9E5F3;--surface:#FFFFFF;--surface-2:#F5F2FB;--ink:#161227;--ink-2:#56516A;--ink-faint:#928DA6;--line:rgba(22,18,39,.12);--line-soft:rgba(22,18,39,.06);--glow:rgba(124,92,255,.28);--shadow:0 24px 60px -34px rgba(76,47,214,.4);--purple:linear-gradient(150deg,#6a4bd6,#4b2fb0)}
   :root{--accent:#7C5CFF;--accent-2:#FF6B8A;--hl:linear-gradient(95deg,#8E6BFF,#C45CFF 40%,#FF6B8A 70%,#FF9B5A);--mono:'DM Mono',ui-monospace,monospace}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -46,8 +46,9 @@
   ::selection{background:var(--accent);color:#fff}
   .hl{background:var(--hl);-webkit-background-clip:text;background-clip:text;color:transparent}
   .ey{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+  html[data-theme="dark"] .ey,html[data-theme="dark"] .pf-copy .tag,html[data-theme="dark"] .d-kpi .lk,html[data-theme="dark"] .d-card .ch .a,html[data-theme="dark"] .rdeck .dtags span,html[data-theme="dark"] .mpill.a,html[data-theme="dark"] .brief .bai{color:#9B7FFF}
   .btn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-weight:600;font-size:14.5px;padding:12px 20px;border-radius:11px;cursor:pointer;border:1px solid transparent;transition:transform .16s,box-shadow .16s}
-  .btn-p{background:var(--accent);color:#fff;box-shadow:0 12px 26px -12px var(--glow)}
+  .btn-p{background:#6B4BF1;color:#fff;box-shadow:0 12px 26px -12px var(--glow)}
   .btn-p:hover{transform:translateY(-2px)}
   .btn-g{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
   .btn-g:hover{transform:translateY(-2px);border-color:var(--accent)}
@@ -123,7 +124,7 @@
   .d-card .ch .a{font-size:10px;color:var(--accent);font-weight:500}
   .d-sched{font-size:11px;color:var(--ink-2)}
   .d-sched .day{font-weight:700;color:var(--ink);margin-bottom:6px;display:flex;gap:7px;align-items:center}
-  .d-sched .tag{background:var(--accent);color:#fff;font-size:8px;padding:2px 6px;border-radius:5px}
+  .d-sched .tag{background:#6B4BF1;color:#fff;font-size:8px;padding:2px 6px;border-radius:5px}
   .d-earn{display:grid;gap:9px}
   .d-earn .row{display:flex;justify-content:space-between;font-size:12px}
   .d-earn .row b{font-weight:700}
@@ -147,11 +148,11 @@
   .rlib .lk{width:100%;background:var(--lc,rgba(255,255,255,.12));color:var(--lct,#fff);border-radius:8px;padding:8px 10px;font-size:10px;font-weight:600;display:flex;justify-content:space-between;margin-bottom:6px}
   .rlib .im{width:100%;height:54px;border-radius:8px;margin-bottom:6px;position:relative;overflow:hidden}
   .rlib .im .cp{position:absolute;left:0;right:0;bottom:0;padding:13px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font-size:9px;font-weight:600;text-align:left}
-  .rlib .join{margin-top:auto;background:var(--la,#7C5CFF);color:#fff;font-weight:700;font-size:10px;padding:8px 16px;border-radius:16px;border:none}
+  .rlib .join{margin-top:auto;background:var(--la,#6B4BF1);color:#fff;font-weight:700;font-size:10px;padding:8px 16px;border-radius:16px;border:none}
   .rdeck{height:100%;background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
   .rdeck .cover{height:78px;position:relative;flex:none}
   .rdeck .cover .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.88);display:grid;place-items:center;color:#15131f;font-size:9px}
-  .rdeck .cover .vtag{position:absolute;top:8px;left:8px;background:var(--accent);color:#fff;font-size:7px;font-weight:700;letter-spacing:.08em;padding:2px 5px;border-radius:4px}
+  .rdeck .cover .vtag{position:absolute;top:8px;left:8px;background:#6B4BF1;color:#fff;font-size:7px;font-weight:700;letter-spacing:.08em;padding:2px 5px;border-radius:4px}
   .rdeck .dbody{padding:0 12px 12px;margin-top:-20px;display:flex;flex-direction:column;flex:1}
   .rdeck .dav{width:40px;height:40px;border-radius:50%;border:3px solid var(--surface);flex:none}
   .rdeck .dnm{font-weight:800;font-size:12.5px;margin-top:5px;display:flex;align-items:center;gap:3px}
@@ -163,8 +164,8 @@
   .rdeck .dstat{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:7px;padding:6px 8px}
   .rdeck .dstat .l{font-size:7px;color:var(--ink-faint);text-transform:uppercase}
   .rdeck .dstat b{font-size:12px;font-weight:800}
-  .rdeck .drate{margin-top:auto;background:linear-gradient(135deg,#7C5CFF,#9b6bff);color:#fff;border-radius:9px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center}
-  .rdeck .drate .rl{font-size:8px;opacity:.85}.rdeck .drate b{font-size:13px;font-weight:800}
+  .rdeck .drate{margin-top:auto;background:linear-gradient(135deg,#5A38E0,#7A56FF);color:#fff;border-radius:9px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center}
+  .rdeck .drate .rl{font-size:8px;opacity:.92}.rdeck .drate b{font-size:13px;font-weight:800}
 
   /* everything you need accordion */
   .eyneed{background:var(--purple);color:#fff}
@@ -189,7 +190,7 @@
   .bf3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
   .bfc{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:22px;text-align:left;display:flex;flex-direction:column}
   .bfc:before{content:"";display:block;height:3px;width:44px;border-radius:3px;background:var(--hl);margin-bottom:16px}
-  .bfc h4{font-size:16px;margin-bottom:9px}
+  .bfc h3{font-size:16px;margin-bottom:9px}
   .bfc p{font-size:13px;color:var(--ink-2);margin-bottom:18px;flex:1}
   .bfc .btn{align-self:flex-start}
   @media(max-width:880px){.bf3{grid-template-columns:1fr}}
@@ -254,7 +255,7 @@
   .brief .bt{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
   .brief .btag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ink-faint)}
   .brief .bai{font-size:9px;font-weight:600;color:var(--accent);background:rgba(124,92,255,.12);padding:3px 8px;border-radius:20px}
-  .brief h4{font-size:16px;margin-bottom:12px}
+  .brief .bt-title{font-size:16px;font-weight:800;margin-bottom:12px}
   .brief .bchips{display:flex;gap:6px;margin-bottom:16px}
   .brief .bchips span{font-size:10px;font-weight:600;padding:4px 9px;border-radius:6px;background:var(--surface-2);color:var(--ink-2)}
   .brief .brow{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line-soft);padding-top:13px}
@@ -287,7 +288,7 @@
   /* pricing */
   .ptoggle{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:4px;margin-top:20px}
   .ptoggle button{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:9px 18px;border-radius:8px;cursor:pointer;color:var(--ink-2)}
-  .ptoggle button.on{background:var(--accent);color:#fff}
+  .ptoggle button.on{background:#6B4BF1;color:#fff}
   .bswitch{
     display:flex;
     align-items:center;
@@ -309,7 +310,7 @@
   .plan{border:1.5px solid var(--line);border-radius:18px;background:var(--surface);padding:26px 22px;display:flex;flex-direction:column;position:relative;text-align:left}
   .plan.feat{border-color:transparent;background:linear-gradient(180deg,rgba(124,92,255,.16),var(--surface));box-shadow:0 24px 50px -26px var(--glow)}
   .plan.feat:before{content:"";position:absolute;inset:0;border-radius:18px;padding:1.5px;background:var(--hl);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-  .plan .rb{position:absolute;top:-11px;left:22px;background:var(--accent);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:6px}
+  .plan .rb{position:absolute;top:-11px;left:22px;background:#6B4BF1;color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:6px}
   .plan .pn{font-weight:700;font-size:17px;margin-bottom:5px}
   .plan .pd{font-size:12px;color:var(--ink-2);margin-bottom:14px;min-height:34px}
   .plan .pp{font-size:34px;font-weight:900;letter-spacing:-0.04em;margin-bottom:4px}
@@ -442,6 +443,7 @@
   <div class="nav-r"><span class="li">Login</span><div class="toggle" id="themeToggle"><span class="k" id="themeK">☾</span></div><a class="btn btn-p" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Get Started Free">Get Started Free</a></div>
 </div></nav>
 
+<main>
 <!-- HERO -->
 <header class="hero">
   <div class="glow glow-a" style="width:520px;height:520px;top:-160px;left:-140px" data-parallax="0.32" data-mouse="-28"></div>
@@ -541,9 +543,9 @@
   <div class="wrap">
     <h2 class="sec-head">Built for <span class="hl">Creators, Brands, and Agencies.</span></h2>
     <div class="bf3">
-      <div class="bfc"><h4>Build. Create. Collaborate. Get Paid.</h4><p>Build your audience, create content, manage partnerships, and grow your creator business from one platform.</p><a class="btn btn-g" href="#creators" title="Discover how creators use Spark Scout">Discover how <span class="ar">→</span></a></div>
-      <div class="bfc"><h4>Discover. Launch. Manage. Grow.</h4><p>Find creators, launch campaigns, manage deliverables, and measure performance from one platform.</p><a class="btn btn-g" href="#brands" title="Discover how brands use Spark Scout">Discover how <span class="ar">→</span></a></div>
-      <div class="bfc"><h4>Manage. Coordinate. Deliver. Scale.</h4><p>Discover creators, review Spark Decks, launch gifted or paid campaigns, approve content, connect Shopify, and keep partnerships moving.</p><a class="btn btn-g" href="#agencies" title="Discover how agencies use Spark Scout">Discover how <span class="ar">→</span></a></div>
+      <div class="bfc"><h3>Build. Create. Collaborate. Get Paid.</h3><p>Build your audience, create content, manage partnerships, and grow your creator business from one platform.</p><a class="btn btn-g" href="#creators" title="Discover how creators use Spark Scout">Discover how <span class="ar">→</span></a></div>
+      <div class="bfc"><h3>Discover. Launch. Manage. Grow.</h3><p>Find creators, launch campaigns, manage deliverables, and measure performance from one platform.</p><a class="btn btn-g" href="#brands" title="Discover how brands use Spark Scout">Discover how <span class="ar">→</span></a></div>
+      <div class="bfc"><h3>Manage. Coordinate. Deliver. Scale.</h3><p>Discover creators, review Spark Decks, launch gifted or paid campaigns, approve content, connect Shopify, and keep partnerships moving.</p><a class="btn btn-g" href="#agencies" title="Discover how agencies use Spark Scout">Discover how <span class="ar">→</span></a></div>
     </div>
   </div>
 </section>
@@ -621,7 +623,7 @@
           <div class="mbar"><i></i><i></i><i></i><span class="u">app.sparkscout.com/campaigns</span></div>
           <div class="brief">
             <div class="bt"><span class="btag">BRIEF · #SP-2847</span><span class="bai">✦ AI Drafting</span></div>
-            <h4>Q4 — Beauty creators · Holiday push</h4>
+            <div class="bt-title">Q4 — Beauty creators · Holiday push</div>
             <div class="bchips"><span>Beauty</span><span>Reels</span><span>$2.5k</span></div>
             <div class="brow"><div class="bavs"><i></i><i></i><i></i></div><span class="bstat">12 creators matched</span></div>
           </div>
@@ -704,12 +706,13 @@
     <a class="btn btn-p" style="font-size:15px;padding:15px 26px" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Start Free">Start Free <span class="ar">→</span></a>
   </div>
 </section>
+</main>
 
 <footer><div class="wrap">
   <div class="foot-top">
     <div class="logo"><img src="images/logo-only.png" loading="lazy" alt="Spark Scout logo" style="width:23px;height:23px;border-radius:7px"> Spark Scout</div>
 
-    <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#" title="Get Spark Scout on Google Play"><img src="images/google-store.svg" alt="Get it on Google Play"></a><a href="#" title="Download Spark Scout on the App Store"><img src="images/apple-store.svg" alt="Download on the App Store"></a></div>
+    <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#" title="Get Spark Scout on Google Play" aria-label="Get Spark Scout on Google Play"><img src="images/google-store.svg" alt="Get it on Google Play"></a><a href="#" title="Download Spark Scout on the App Store" aria-label="Download Spark Scout on the App Store"><img src="images/apple-store.svg" alt="Download on the App Store"></a></div>
   </div>
   <div class="foot-links" style="margin-bottom:20px">
     <a href="policies/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
