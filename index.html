@@ -128,7 +128,9 @@ body.light .acard p s{color:#8b879c}
 .stack{margin-top:58px;position:relative;z-index:1}
 .stack .cap{font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
 .stack .cap b{color:var(--ink);font-weight:500}
-.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquees{position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquees:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg),transparent 22%,transparent 78%,var(--bg))}
+.marquee{position:relative;overflow:hidden}
 .track{display:flex;gap:12px;width:max-content;animation:scroll 42s linear infinite}
 .track.rev{animation-direction:reverse;animation-duration:52s}
 .marquee+.marquee{margin-top:12px}
@@ -167,15 +169,12 @@ body.light .acard p s{color:#8b879c}
 .ptoggle button{border:none;background:none;color:var(--muted);font-weight:500;font-size:14.5px;padding:11px 28px;border-radius:999px;cursor:pointer;transition:.2s var(--ease);font-family:'Poppins'}
 .ptoggle button:hover{color:var(--ink)}
 .ptoggle button.on{background:var(--grad);color:#fff;font-weight:600;box-shadow:0 6px 18px -6px rgba(124,92,255,.6)}
-.bswitch{display:flex;align-items:center;gap:12px;margin:20px 0 40px;font-weight:600;font-size:13px;justify-content:center}
-.bswitch .bl{border:none;background:none;font-family:inherit;font-weight:600;font-size:13px;padding:4px 0;cursor:pointer;color:var(--muted);transition:color .25s}
-.bswitch .bl.on{color:var(--a2)}
-.bswitch .switch{width:52px;height:28px;border-radius:50px;background:var(--chip);border:1px solid var(--line);position:relative;cursor:pointer;transition:background .25s,border-color .25s;flex:none}
-.bswitch .switch:after{content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:var(--muted);transition:transform .25s,background .25s}
-.bswitch .switch.on{background:var(--a2);border-color:var(--a2)}
-.bswitch .switch.on:after{transform:translateX(26px);background:#fff}
-.bswitch .save{font-size:11px;font-weight:700;color:#1f9d57;background:rgba(31,157,87,.12);padding:3px 9px;border-radius:20px}
-.psave{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.02em;color:var(--a2);margin:6px 0 0;min-height:14px}
+.btoggle{display:flex;width:fit-content;align-items:center;gap:4px;background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px;margin:0 auto 44px}
+.btoggle button{border:none;background:none;color:var(--muted);font-weight:500;font-size:14.5px;padding:11px 28px;border-radius:999px;cursor:pointer;transition:.2s var(--ease);font-family:'Poppins';display:inline-flex;align-items:center;gap:8px}
+.btoggle button:hover{color:var(--ink)}
+.btoggle button.on{background:var(--grad);color:#fff;font-weight:600;box-shadow:0 6px 18px -6px rgba(124,92,255,.6)}
+.btoggle .save{font-size:11px;font-weight:700;color:#1f9d57;background:rgba(31,157,87,.15);padding:3px 9px;border-radius:20px}
+.pnote{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.02em;color:var(--muted);margin:6px 0 0;min-height:14px}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto;text-align:left;align-items:start}
 .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative}
 .plan.pop{border:1.6px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 26px 64px -24px rgba(124,92,255,.4)}
@@ -262,6 +261,7 @@ body.light .vs-card{box-shadow:0 26px 64px -28px rgba(80,60,160,.28)}
 .step.on .n{color:#F0A9C8}
 .step h3{color:#fff;font-size:19px;font-weight:700;letter-spacing:-.03em;margin-top:7px}
 .step p{color:rgba(255,255,255,.58);font-size:13.5px;line-height:1.55;margin-top:6px}
+.step .p-short{display:none}
 .step .tick{display:flex;align-items:center;gap:8px;margin-top:13px;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.32);transition:color .4s}
 .step:hover .tick{color:rgba(255,255,255,.9)}
 .step.on .tick{color:rgba(255,255,255,.72)}
@@ -419,9 +419,11 @@ body.light .vs-card{box-shadow:0 26px 64px -28px rgba(80,60,160,.28)}
 .dk .powered b{color:#7C3AED;font-weight:500}
 
 @media(max-width:1000px){
- .stage-in{grid-template-columns:1fr;gap:26px;max-width:340px}
- .rail.right{order:3}
+ .stage-in{grid-template-columns:1fr 1fr;gap:26px;max-width:700px}
+ .phone-col{grid-column:1/-1;grid-row:1}
  .stage{padding:44px 18px 50px;border-radius:26px}
+ .step .p-long{display:none}
+ .step .p-short{display:block}
 }
 @media(prefers-reduced-motion:reduce){
  .pane-deck,.pane-link,.cursor{transition:none}
@@ -454,6 +456,67 @@ body.light .vs-card{box-shadow:0 26px 64px -28px rgba(80,60,160,.28)}
   .menubtn{width:34px;height:34px}
 }
 @media(max-width:600px){.rgrid{grid-template-columns:1fr}.cta{flex-direction:column}.btn-lg{width:100%}.microproof{gap:10px;flex-direction:column}}
+@media(max-width:768px){
+  .hero{padding:64px 0 36px}
+  .eyebrow{font-size:10px;padding:8px 14px}
+  .aud{grid-template-columns:1fr;gap:10px;margin-top:36px}
+  .acard{padding:16px 18px}
+  .stack{margin-top:44px}
+  .tool{font-size:13px;padding:10px 16px}
+  .replaces{padding:56px 0 68px}
+  .rhead{margin-bottom:34px}
+  .vs-sec{padding:60px 0 40px}
+  .vs-card{padding:12px 18px}
+  .vs-row{padding:14px 0}
+  .ss-sec{padding:64px 0 72px}
+  .ss-head{margin-bottom:36px}
+  .pricing{padding:64px 0 72px}
+  .pgrid{max-width:100%}
+  .plan{padding:26px 22px}
+  .btoggle button{padding:9px 20px}
+  .price{font-size:40px}
+  .how,.faq{padding:60px 0 68px}
+  .hh{margin-bottom:32px}
+  .final{padding:80px 0 88px}
+  footer{padding:44px 0 32px}
+}
+@media(max-width:520px){
+  .wrap{padding:0 18px}
+  .hero{padding:52px 0 32px}
+  h1{font-size:clamp(34px,9vw,46px)}
+  .sub{margin-top:20px;font-size:15.5px}
+  .cta{margin-top:28px}
+  .aud{gap:9px}
+  .microproof{gap:10px}
+  .stack .cap{font-size:10.5px}
+  .tool{gap:7px;font-size:12px;padding:9px 14px}
+  .rgrid{gap:10px}
+  .rcard{padding:18px 16px 16px}
+  .rcard .feat{font-size:15px}
+  .rcard .repl{font-size:9.5px}
+  .rcard .tools span{font-size:11.5px;padding:5px 10px}
+  .rfoot{margin-top:34px}
+  .ptoggle button{padding:8px 14px;font-size:13.5px}
+  .btoggle{width:100%;max-width:340px}
+  .btoggle button{flex:1;justify-content:center;padding:10px 12px;font-size:13.5px}
+  .pgrid{max-width:100%}
+  .plan{padding:24px 20px}
+  .pdesc{min-height:0;font-size:13.5px}
+  .price{font-size:36px}
+  .steps{gap:10px}
+  .stepcard{padding:18px 16px}
+  .faq-q{font-size:14.5px;padding:17px 18px}
+  .faq-a p{padding:0 18px 18px;font-size:13.5px}
+  .final{padding:70px 0 78px}
+  .final h2{font-size:clamp(28px,8vw,38px)}
+  .final p{font-size:15.5px}
+  .phone{width:min(306px,calc(100vw - 58px))}
+  .viewport{height:min(632px,68vh)}
+  footer{padding:36px 0 26px}
+  footer .foot-links{font-size:12.5px;gap:14px;margin:26px 0 16px}
+  footer .foot-bottom{font-size:11.5px}
+  .stores{gap:8px}
+}
 
 /* ===== showcase, light mode ===== */
 body.light .stage{background:#FFFFFF;border:1px solid rgba(16,14,26,.07);box-shadow:0 30px 80px -40px rgba(80,60,160,.28)}
@@ -485,15 +548,71 @@ body.light .replay:hover{background:#F4F2FA;color:#100E1A;border-color:rgba(16,1
 
 body.light .phone{background:#15131C;border-color:#D9D6E4;box-shadow:0 44px 100px -40px rgba(60,40,120,.45),0 0 0 1px rgba(255,255,255,.05) inset}
 
+/* ===== how it works ===== */
+.how{padding:84px 0 96px;border-top:1px solid var(--line);background:var(--bg2)}
+.hh{text-align:center;max-width:680px;margin:0 auto 44px}
+.hh .peyebrow{color:var(--a2)}
+.hh h2{font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.045em;margin-top:14px;line-height:1.05}
+.hh p{color:var(--muted);margin-top:14px;font-size:16.5px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.stepcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 18px 20px;position:relative;overflow:hidden;transition:border-color .25s var(--ease),transform .25s var(--ease)}
+.stepcard:hover{border-color:rgba(124,92,255,.35);transform:translateY(-2px)}
+.stepcard .bar{height:3px;border-radius:2px;background:var(--gradsm);margin-bottom:16px;transition:width .6s var(--ease)}
+.stepcard .stepnum{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.stepcard h3{font-weight:600;font-size:17px;letter-spacing:-.02em;margin-bottom:8px}
+.stepcard p{font-size:13px;color:var(--muted);line-height:1.55}
+@media(max-width:1100px){.steps{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* ===== faq ===== */
+.faq{padding:84px 0 96px;border-top:1px solid var(--line);background:var(--bg)}
+.faq .hh{margin-bottom:36px}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border:1px solid var(--line);border-radius:18px;background:var(--card);margin-bottom:12px;overflow:hidden;transition:border-color .25s var(--ease)}
+.faq-item.open{border-color:rgba(124,92,255,.4)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;text-align:left;background:none;border:none;color:var(--ink);font-family:'Poppins';font-weight:600;font-size:16px;padding:20px 22px;cursor:pointer;letter-spacing:-.01em}
+.faq-q i{width:22px;height:22px;flex:none;border-radius:50%;border:1.5px solid var(--line);position:relative;transition:transform .3s var(--ease),border-color .25s}
+.faq-q i:before,.faq-q i:after{content:"";position:absolute;top:50%;left:50%;background:var(--muted);transition:background .25s}
+.faq-q i:before{width:10px;height:1.5px;transform:translate(-50%,-50%)}
+.faq-q i:after{width:1.5px;height:10px;transform:translate(-50%,-50%)}
+.faq-item.open .faq-q i{transform:rotate(45deg);border-color:var(--a2)}
+.faq-item.open .faq-q i:before,.faq-item.open .faq-q i:after{background:var(--a2)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.faq-a p{padding:0 22px 20px;color:var(--muted);font-size:14.5px;line-height:1.6}
+.faq-item.open .faq-a{max-height:240px}
+
+/* ===== final cta ===== */
+.final{position:relative;padding:110px 0 120px;text-align:center;overflow:hidden;background:var(--bg2);border-top:1px solid var(--line)}
+.final .aur3{position:absolute;inset:-30% -10% auto -10%;height:520px;pointer-events:none;
+ background:radial-gradient(520px 280px at 50% 10%,rgba(124,92,255,.30),transparent 62%),
+            radial-gradient(420px 220px at 62% 18%,rgba(232,98,155,.18),transparent 62%),
+            radial-gradient(300px 180px at 84% 30%,rgba(249,123,79,.14),transparent 62%);
+ filter:blur(32px)}
+.final .wrap{position:relative;z-index:1}
+.final h2{font-weight:800;font-size:clamp(32px,4.6vw,56px);letter-spacing:-.045em;line-height:1.03;max-width:14ch;margin:0 auto}
+.final p{color:var(--muted);margin:20px auto 0;font-size:17px;max-width:520px;line-height:1.6}
+.final .cta{margin-top:36px}
+body.light .final{background:linear-gradient(180deg,#EFEBFB 0%,#F7F6FB 100%)}
+
 /* ===== footer ===== */
-footer{border-top:1px solid var(--line);background:var(--bg2);padding:44px 0 30px}
-footer .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
-footer .logo{justify-content:center}
-footer .foot-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-size:13.5px;font-weight:500;color:var(--muted)}
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:56px 0 36px}
+footer .foot-top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:32px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.flogo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.035em}
+.flogo .spark{width:32px;height:32px;border-radius:10px}
+.flogo .spark svg{width:100%;height:100%;display:block}
+.stores{display:flex;gap:12px;flex-wrap:wrap}
+.storebadge{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:8px 14px;color:var(--ink);transition:border-color .25s var(--ease),transform .25s var(--ease)}
+.storebadge:hover{border-color:rgba(124,92,255,.4);transform:translateY(-2px)}
+.storebadge svg{width:22px;height:22px;flex:none}
+.storebadge .txt{display:flex;flex-direction:column;text-align:left;line-height:1.1}
+.storebadge .s{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.storebadge .l{font-weight:600;font-size:14px;color:var(--ink);letter-spacing:-.01em}
+footer .foot-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-size:13.5px;font-weight:500;color:var(--muted);margin:32px 0 20px}
 footer .foot-links a{transition:color .2s}
 footer .foot-links a:hover{color:var(--ink)}
 footer .foot-bottom{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-size:12.5px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:.02em}
-@media(max-width:600px){footer .foot-bottom{flex-direction:column;gap:6px}}
+@media(max-width:600px){footer .foot-top{flex-direction:column;align-items:flex-start}footer .foot-bottom{flex-direction:column;gap:6px}}
 </style>
 </head>
 <body>
@@ -541,8 +660,10 @@ footer .foot-bottom{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
 
   <div class="stack">
    <p class="cap">Cancel the stack. <b>Spark Scout does all of this.</b></p>
-   <div class="marquee"><div class="track" id="m1"></div></div>
-   <div class="marquee"><div class="track rev" id="m2"></div></div>
+   <div class="marquees">
+    <div class="marquee"><div class="track" id="m1"></div></div>
+    <div class="marquee"><div class="track rev" id="m2"></div></div>
+   </div>
   </div>
  </div>
 </section>
@@ -591,7 +712,8 @@ footer .foot-bottom{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
       <span class="go">‹</span>
       <div class="n">Step 01</div>
       <h3>SparkLink</h3>
-      <p>One link in your bio. Profile, socials, partner drops, and shoppable blocks, all yours.</p>
+      <p class="p-long">One link in your bio. Profile, socials, partner drops, and shoppable blocks, all yours.</p>
+      <p class="p-short">One link in your bio. Everything you share lives here.</p>
       <div class="tick" id="t1"><i></i>You are here</div>
      </div>
     </div>
@@ -774,7 +896,8 @@ footer .foot-bottom{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
       <span class="go">›</span>
       <div class="n">Step 02</div>
       <h3>SparkDeck</h3>
-      <p>Your media kit. Stats, work, reviews, and rates, everything a brand needs to say yes.</p>
+      <p class="p-long">Your media kit. Stats, work, reviews, and rates, everything a brand needs to say yes.</p>
+      <p class="p-short">Your media kit. Stats, work, reviews, rates.</p>
       <div class="tick" id="t2"><i></i>Tap to open</div>
      </div>
     </div>
@@ -795,13 +918,94 @@ footer .foot-bottom{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
    <button data-aud="brands">Brands</button>
    <button data-aud="agencies">Agencies</button>
   </div>
-  <div class="bswitch">
-   <button class="bl on" data-b="m">Monthly</button>
-   <button type="button" class="switch" id="btoggle" role="switch" aria-checked="false" aria-label="Billing period"></button>
-   <button class="bl" data-b="a">Yearly</button>
-   <span class="save">SAVE 20%</span>
+  <div class="btoggle" id="btoggle" role="group" aria-label="Billing period">
+   <button type="button" class="on" data-b="m" aria-pressed="true">Monthly</button>
+   <button type="button" data-b="a" aria-pressed="false">Annual <span class="save">Save 20%</span></button>
   </div>
   <div class="pgrid" id="pgrid"></div>
+ </div>
+</section>
+
+<section class="how" id="how-it-works">
+ <div class="wrap">
+  <div class="hh">
+   <p class="peyebrow">How it works</p>
+   <h2>From discovery to payout in <span class="grad">five steps.</span></h2>
+   <p>No sprawl. No switching tabs. Just one clean, guided flow.</p>
+  </div>
+  <div class="steps">
+   <div class="stepcard">
+    <div class="bar" style="width:30px"></div>
+    <div class="stepnum">Step 01</div>
+    <h3>Discover</h3>
+    <p>Search creators or let AI match you to the perfect partners for your product.</p>
+   </div>
+   <div class="stepcard">
+    <div class="bar" style="width:38px"></div>
+    <div class="stepnum">Step 02</div>
+    <h3>Start campaigns</h3>
+    <p>Launch gifting, seeding, and paid campaigns with a few clicks.</p>
+   </div>
+   <div class="stepcard">
+    <div class="bar" style="width:46px"></div>
+    <div class="stepnum">Step 03</div>
+    <h3>Manage approvals</h3>
+    <p>Send contracts, collect e-signatures, and track deliverables.</p>
+   </div>
+   <div class="stepcard">
+    <div class="bar" style="width:54px"></div>
+    <div class="stepnum">Step 04</div>
+    <h3>Approve content</h3>
+    <p>Review, approve, and publish content right from the workspace.</p>
+   </div>
+   <div class="stepcard">
+    <div class="bar" style="width:62px"></div>
+    <div class="stepnum">Step 05</div>
+    <h3>Get paid</h3>
+    <p>Payments, invoicing, and escrow — all handled in-platform.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="faq" id="faq">
+ <div class="wrap">
+  <div class="hh">
+   <p class="peyebrow">FAQ</p>
+   <h2>Frequently asked questions.</h2>
+   <p>Answers, fast.</p>
+  </div>
+  <div class="faq-list" id="faqList">
+   <div class="faq-item open">
+    <button class="faq-q" type="button" aria-expanded="true">What is Spark Scout?<i></i></button>
+    <div class="faq-a"><p>Spark Scout is the all-in-one platform for creator partnerships — discovery, portfolios, contracts, content, campaigns, and payments — in a single workspace. It replaces the 14+ tools most creators, brands, and agencies duct-tape together.</p></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" type="button" aria-expanded="false">Is it free to start?<i></i></button>
+    <div class="faq-a"><p>Yes. Every account starts on the free plan — no credit card required. Upgrade when the work grows.</p></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" type="button" aria-expanded="false">What is a Spark Deck?<i></i></button>
+    <div class="faq-a"><p>A Spark Deck is your digital media kit — stats, work, reviews, and rates, in one shareable link. Brands tap it and see everything they need to book you.</p></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" type="button" aria-expanded="false">Can brands send products through Shopify?<i></i></button>
+    <div class="faq-a"><p>Yes. The Shopify app connects your store to Spark Scout, so gifting and seeding orders flow straight from product to creator.</p></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" type="button" aria-expanded="false">Who is Spark Scout for?<i></i></button>
+    <div class="faq-a"><p>Creators, brands, and agencies that want discovery, campaigns, content, contracts, and payments in one place — not fifteen.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="final">
+ <div class="aur3"></div>
+ <div class="wrap">
+  <h2>The best partnerships <span class="grad">start with a spark.</span></h2>
+  <p>Bring your whole creator workflow into one login — free to start, no credit card required.</p>
+  <div class="cta"><a class="btn btn-primary btn-lg" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Start Free →</a></div>
  </div>
 </section>
 </main>
@@ -844,27 +1048,25 @@ document.getElementById('m2').innerHTML=chips2()+chips2();
 var SIGNUP={creators:'https://app.sparkscout.com/auth?type=creator&tab=signup',brands:'https://app.sparkscout.com/auth?type=brand&tab=signup',agencies:'https://app.sparkscout.com/auth?type=agency&tab=signup'};
 var PLANS={
  creators:[
-  {name:"Free Plan",desc:"Get discovered and get paid — for free.",price:"Free",cta:"Try For Free →",feats:["Spark Link","1 Spark Deck","1 GB Cloud Storage","20 AI Credits / month","1 Active Deal","Basic Analytics"]},
-  {name:"Growth Plan",desc:"For creators landing more deals, faster.",price:"$45",per:"/mo",pop:true,cta:"Choose Growth Plan →",feats:["Spark Link","3 Spark Decks","10 GB Cloud Storage","600 AI Credits / month","10 Active Deals","Advanced Analytics","Custom Branding"]},
-  {name:"Pro Plan",desc:"For full-time creators running like a business.",price:"$95",per:"/mo",cta:"Choose Pro Plan →",feats:["Unlimited Spark Decks","50 GB Cloud Storage","1200 AI Credits / month","Unlimited Active Deals","Advanced Analytics","Custom Branding","Priority Support"]}
+  {name:"Free Plan",desc:"Get discovered and get paid — for free.",free:true,cta:"Try For Free →",feats:["Spark Link","1 Spark Deck","1 GB Cloud Storage","20 AI Credits / month","1 Active Deal","Basic Analytics"]},
+  {name:"Growth Plan",desc:"For creators landing more deals, faster.",m:45,y:432,ye:36,pop:true,cta:"Choose Growth Plan →",feats:["Spark Link","3 Spark Decks","10 GB Cloud Storage","600 AI Credits / month","10 Active Deals","Advanced Analytics","Custom Branding"]},
+  {name:"Pro Plan",desc:"For full-time creators running like a business.",m:95,y:912,ye:76,cta:"Choose Pro Plan →",feats:["Unlimited Spark Decks","50 GB Cloud Storage","1200 AI Credits / month","Unlimited Active Deals","Advanced Analytics","Custom Branding","Priority Support"]}
  ],
  brands:[
-  {name:"Free Plan",desc:"Launch your first brand campaigns for free.",price:"Free",cta:"Try For Free →",feats:["1 GB Cloud Storage","20 AI Credits / month","5 Gifting/Seeding Campaigns / 10 Orders","1 Team Member (+$25/m per additional member)","Basic Analytics"]},
-  {name:"Growth Plan",desc:"For brands scaling campaigns & creator outreach.",price:"$249",per:"/mo",pop:true,cta:"Choose Growth Plan →",feats:["10 GB Cloud Storage","600 AI Credits / month","15 Gift/Seeding Campaigns / 100 Orders","3 Team Members (+$25/m per additional member)","Advanced Analytics","Custom Branding"]},
-  {name:"Pro Plan",desc:"For brands running campaigns at scale.",price:"$499",per:"/mo",cta:"Choose Pro Plan →",feats:["50 GB Cloud Storage","1200 AI Credits / month","Unlimited Gift/Seeding Campaigns & Orders","Unlimited Team Members","Advanced Analytics","Custom Branding","Priority Support"]}
+  {name:"Free Plan",desc:"Launch your first brand campaigns for free.",free:true,cta:"Try For Free →",feats:["1 GB Cloud Storage","20 AI Credits / month","5 Gifting / Seeding Campaigns · 10 Orders","1 Team Member (+$25/mo each)","Basic Analytics"]},
+  {name:"Growth Plan",desc:"For brands scaling campaigns & creator outreach.",m:249,y:2390,ye:199,pop:true,cta:"Choose Growth Plan →",feats:["10 GB Cloud Storage","600 AI Credits / month","15 Gifting / Seeding Campaigns · 100 Orders","3 Team Members (+$25/mo each)","Advanced Analytics","Custom Branding"]},
+  {name:"Pro Plan",desc:"For brands running campaigns at scale.",m:499,y:4790,ye:399,cta:"Choose Pro Plan →",feats:["50 GB Cloud Storage","1200 AI Credits / month","Unlimited Campaigns & Orders","Unlimited Team Members","Advanced Analytics","Custom Branding","Priority Support"]}
  ],
  agencies:[
-  {name:"Free Plan",desc:"Start managing clients on Spark Scout for free.",price:"Free",cta:"Try For Free →",feats:["3 Talent Roster Slots","1 GB Cloud Storage","20 AI Credits / month","5 Managed Gifting/Seeding Campaigns / 10 Orders","1 Team Member (+$25/m per additional member)","Basic Analytics"]},
-  {name:"Growth Plan",desc:"For agencies growing their roster and client work.",price:"$249",per:"/mo",pop:true,cta:"Choose Growth Plan →",feats:["15 Talent Roster Slots","10 GB Cloud Storage","600 AI Credits / month","15 Managed Gifting/Seeding Campaigns / 100 Orders","5 Team Members (+$25/m per additional member)","Advanced Analytics","Custom Branding"]},
-  {name:"Pro Plan",desc:"For agencies managing large rosters and teams.",price:"$499",per:"/mo",cta:"Choose Pro Plan →",feats:["50 GB Cloud Storage","1200 AI Credits / month","Unlimited Gift/Seeding Campaigns & Orders","Unlimited Team Members","Advanced Analytics","Custom Branding","Priority Support"]}
+  {name:"Free Plan",desc:"Start managing clients on Spark Scout for free.",free:true,cta:"Try For Free →",feats:["3 Talent Roster Slots","1 GB Cloud Storage","20 AI Credits / month","5 Gifting / Seeding Campaigns · 10 Orders","1 Team Member (+$25/mo each)","Basic Analytics"]},
+  {name:"Growth Plan",desc:"For agencies growing their roster and client work.",m:249,y:2390,ye:199,pop:true,cta:"Choose Growth Plan →",feats:["15 Talent Roster Slots","10 GB Cloud Storage","600 AI Credits / month","15 Gifting / Seeding Campaigns · 100 Orders","5 Team Members (+$25/mo each)","Advanced Analytics","Custom Branding"]},
+  {name:"Pro Plan",desc:"For agencies managing large rosters and teams.",m:499,y:4790,ye:399,cta:"Choose Pro Plan →",feats:["50 GB Cloud Storage","1200 AI Credits / month","Unlimited Campaigns & Orders","Unlimited Team Members","Advanced Analytics","Custom Branding","Priority Support"]}
  ]
 };
 var bill='m';
 function setBill(b){
  bill=b;
- document.querySelectorAll('.bswitch .bl').forEach(function(x){x.classList.toggle('on',x.dataset.b===b)});
- var sw=document.getElementById('btoggle');
- if(sw){sw.classList.toggle('on',b==='a');sw.setAttribute('aria-checked',b==='a');}
+ document.querySelectorAll('#btoggle button').forEach(function(x){x.classList.toggle('on',x.dataset.b===b);x.setAttribute('aria-pressed',x.dataset.b===b)});
  var on=document.querySelector('#ptoggle button.on');
  renderPlans(on?on.dataset.aud:'creators');
 }
@@ -872,11 +1074,10 @@ function renderPlans(aud){
  var link=SIGNUP[aud],ann=bill==='a';
  document.getElementById('pgrid').innerHTML=PLANS[aud].map(function(p){
   var badge=p.pop?'<span class="badge2">Most Popular</span>':'';
-  var isFree=p.price==='Free';
   var price,per,note;
-  if(isFree){price='Free';per='';note='';}
-    else if(ann){price='$'+Math.round(parseInt(p.price.replace(/[^0-9]/g,''),10)*0.8);per='<span class="per">/mo</span>';note='<div class="psave">billed annually · save 20%</div>';}
-  else{price=p.price;per=p.per?'<span class="per">'+p.per+'</span>':'';note='';}
+  if(p.free){price='Free';per='';note='<div class="pnote">Free forever</div>';}
+  else if(ann){price='$'+p.ye;per='<span class="per">/mo</span>';note='<div class="pnote">Billed annually · $'+p.y.toLocaleString()+'</div>';}
+  else{price='$'+p.m;per='<span class="per">/mo</span>';note='';}
   var url=link+(ann?'&billing=annual':'');
   var btn='<a class="pbtn '+(p.pop?'primary':'outline')+'" href="'+url+'">'+p.cta+'</a>';
   var feats=p.feats.map(function(f){return '<div class="feat"><span class="c">✓</span>'+f+'</div>'}).join('');
@@ -891,10 +1092,18 @@ document.querySelectorAll('#ptoggle button').forEach(function(b){
   b.classList.add('on'); renderPlans(b.dataset.aud);
  });
 });
-document.querySelectorAll('.bswitch .bl').forEach(function(x){x.addEventListener('click',function(){setBill(x.dataset.b)})});
-var bsw=document.getElementById('btoggle');
-if(bsw)bsw.addEventListener('click',function(){setBill(bsw.classList.contains('on')?'m':'a')});
+document.querySelectorAll('#btoggle button').forEach(function(x){x.addEventListener('click',function(){setBill(x.dataset.b)})});
 renderPlans('creators');
+
+/* ===== faq ===== */
+var faq=document.getElementById('faqList');
+if(faq)faq.querySelectorAll('.faq-q').forEach(function(q){
+ q.addEventListener('click',function(){
+  var item=q.parentElement,open=item.classList.contains('open');
+  faq.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});
+  if(!open){item.classList.add('open');q.setAttribute('aria-expanded','true')}
+ });
+});
 
 /* ===== value stack ===== */
 var VROWS=[
@@ -913,7 +1122,7 @@ var VROWS=[
  ["Team Collaboration","Notion",12],
  ["Calendar & Deliverables","Google Calendar",8]
 ];
-var VSPARK=29;
+var VSPARK=45;
 var BOLT='<svg class="ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg>';
 (function(){
  var total=VROWS.reduce(function(s,r){return s+r[2]},0), save=total-VSPARK;
@@ -1017,10 +1226,18 @@ var BOLT='<svg class="ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/20
 })();
 </script>
 <footer><div class="wrap">
-  <div class="logo"><svg class="spark ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssgFooter" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF3DFF"/><stop offset="40%" stop-color="#B569FF"/><stop offset="72%" stop-color="#4EA8FF"/><stop offset="100%" stop-color="#0D8FFF"/></linearGradient></defs><rect width="100" height="100" rx="19" fill="url(#ssgFooter)"/><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg> Spark Scout</div>
-
-  <div class="download-wrapper" style="display:flex;align-items:center;justify-content:center;gap:10px"><a href="#" title="Get Spark Scout on Google Play" aria-label="Get Spark Scout on Google Play"><img src="images/google-store.svg" alt="Get it on Google Play" width="120" height="40" loading="lazy"></a><a href="#" title="Download Spark Scout on the App Store" aria-label="Download Spark Scout on the App Store"><img src="images/apple-store.svg" alt="Download on the App Store" width="120" height="40" loading="lazy"></a></div>
-  <div class="foot-links" style="margin-bottom:6px">
+  <div class="foot-top">
+    <div class="flogo"><svg class="spark ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssgFooter" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF3DFF"/><stop offset="40%" stop-color="#B569FF"/><stop offset="72%" stop-color="#4EA8FF"/><stop offset="100%" stop-color="#0D8FFF"/></linearGradient></defs><rect width="100" height="100" rx="19" fill="url(#ssgFooter)"/><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg> Spark Scout</div>
+    <div class="stores">
+      <a class="storebadge" href="#" aria-label="Get it on Google Play">
+       <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M3.6 2.3 13.2 12 3.6 21.7A1.6 1.6 0 0 1 3 20.4V3.6c0-.5.2-1 .6-1.3z"></path><path fill="#FBBC04" d="m16.4 8.8 3.4 1.9c1 .6 1 2 0 2.6l-3.4 1.9L13.2 12z"></path><path fill="#34A853" d="M3.6 21.7 13.2 12l3.2 3.2-10.5 5.9c-.8.4-1.7.2-2.3-.4z"></path><path fill="#4285F4" d="M3.6 2.3c.6-.6 1.5-.8 2.3-.4l10.5 5.9L13.2 12z"></path></svg><span class="txt"><span class="s">Get it on</span><span class="l">Google Play</span></span>
+      </a>
+      <a class="storebadge" href="#" aria-label="Download on the App Store">
+       <svg viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.6 2.1-1.5 2.6-.4 6.5 1.1 8.7.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.2 0 1.9-1.1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.4s-2.2-.9-2.2-3.4zM14.3 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.7-1.1 1.7-.9 2.7 1 .1 2-.5 2.6-1.3z"></path></svg><span class="txt"><span class="s">Download on the</span><span class="l">App Store</span></span>
+      </a>
+    </div>
+  </div>
+  <div class="foot-links">
     <a href="policies/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
     <a href="policies/terms-of-service.html" title="Terms of Service">Terms of Service</a>
     <a href="policies/payment-terms.html" title="Payment Terms">Payment Terms</a>
