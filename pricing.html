@@ -137,7 +137,7 @@
   .price{margin-bottom:6px}
   @media(max-width:768px){.btoggle{margin:20px auto;gap:10px;justify-content:center}.blbl{font-size:13px}.bswitch{width:44px;height:24px}.bthumb{width:18px;height:18px}.bswitch.on .bthumb{transform:translateX(20px)}}
   .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto;text-align:left;align-items:start}
-  .pswiper{}
+  .pswiper{touch-action:pan-y}
   .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;height:100%}
   .plan.pop{border:1.6px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 26px 64px -24px rgba(124,92,255,.4)}
   .badge2{position:absolute;top:-12px;left:26px;background:var(--grad);color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
@@ -178,7 +178,9 @@
   .storebadge{display:inline-flex;align-items:center;gap:9px;background:#0A0910;border:1px solid rgba(255,255,255,.14);
    border-radius:11px;padding:8px 15px;min-width:150px;transition:transform .22s var(--ease),border-color .22s var(--ease)}
   .storebadge:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.34)}
-  body.light .storebadge{border-color:rgba(16,14,26,.12)}
+   body.light .storebadge{border-color:rgba(16,14,26,.12)}
+   body.light .btoggle .save{background:rgb(0 128 0 / 32%);color:rgb(69 157 69)}
+   body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231)}
   .storebadge svg{width:22px;height:22px;flex:none}
   .storebadge .txt{line-height:1.15}
   .storebadge .s{display:block;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
@@ -327,17 +329,18 @@ function renderPlans(aud){
 var swiperIdx=0;
 function initSwiper(){
  var grid=document.getElementById('pgrid');
+ var wrap=grid.parentNode;
  var ind=document.getElementById('pind');
  if(!grid||!ind)return;
  var plans=grid.querySelectorAll('.plan');
- if(window.innerWidth>900||plans.length<2){ind.style.display='none';grid.style.transform='';return;}
+ if(window.innerWidth>900||plans.length<2){ind.style.display='none';grid.style.transform='';wrap.ontouchstart=null;wrap.ontouchend=null;return;}
  ind.style.display='flex';
  ind.innerHTML=Array.from(plans).map(function(_,i){return '<span'+(i===swiperIdx?' class="on"':'')+'></span>'}).join('');
  if(swiperIdx>=plans.length)swiperIdx=0;
  ind.querySelectorAll('span').forEach(function(d,i){d.addEventListener('click',function(){goSlide(i)});});
  var sx=0;
- grid.ontouchstart=function(e){sx=e.touches[0].clientX};
- grid.ontouchend=function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){if(dx<0&&swiperIdx<plans.length-1)goSlide(swiperIdx+1);else if(dx>0&&swiperIdx>0)goSlide(swiperIdx-1)}};
+ wrap.ontouchstart=function(e){sx=e.touches[0].clientX};
+ wrap.ontouchend=function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){if(dx<0&&swiperIdx<plans.length-1)goSlide(swiperIdx+1);else if(dx>0&&swiperIdx>0)goSlide(swiperIdx-1)}};
  goSlide(swiperIdx);
 }
 function goSlide(i){

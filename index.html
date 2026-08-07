@@ -83,6 +83,8 @@ body.light .themebtn:hover{border-color:rgba(16,14,26,.28)}
 .btn-ghost{color:var(--ink);border:1px solid var(--line);background:transparent}
 .btn-ghost:hover{border-color:rgba(255,255,255,.26)}
 body.light .btn-ghost:hover{border-color:rgba(16,14,26,.28)}
+body.light .login-icon{color:var(--ink)}
+body.light .login-icon:hover{color:var(--a2)}
 .login{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s}
 .login:hover{color:var(--ink)}
 .login-icon{display:none;color:var(--muted);transition:color .2s;line-height:1}
@@ -178,7 +180,7 @@ body.light .acard p s{color:#8b879c}
 .ptoggle button:hover{color:var(--ink)}
 .ptoggle button.on{background:var(--grad);color:#fff;font-weight:600;box-shadow:0 6px 18px -6px rgba(124,92,255,.6)}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto;text-align:left;align-items:start}
-.pswiper{}
+.pswiper{touch-action:pan-y}
 .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;height:100%}
 .plan.pop{border:1.6px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 26px 64px -24px rgba(124,92,255,.4)}
 .badge2{position:absolute;top:-12px;left:26px;background:var(--grad);color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
@@ -572,10 +574,11 @@ body.light .final{background:linear-gradient(180deg,#EFEBFB 0%,#F7F6FB 100%)}
  .wrap{padding:0 15px}
  .nav{height:56px;gap:8px}
  .logo{font-size:16px;gap:8px}
- .logo .spark{width:24px;height:24px}
+ .logo .spark{width:32px;height:32px;border-radius:6px}
  .nav-cta{gap:5px}
  .themebtn{width:32px;height:32px;font-size:13px}
  .btn-primary{padding:8px 13px;font-size:12.5px}
+ .login-icon svg{width:20px;height:20px}
  .stage{padding:32px 12px 38px;border-radius:22px}
  .phone{width:min(306px,calc(100vw - 58px));border-radius:40px;padding:9px}
  .viewport{height:min(632px,68vh);border-radius:32px}
@@ -635,7 +638,7 @@ body.light .stepcard:hover{box-shadow:0 22px 46px -24px rgba(60,40,120,.5)}
  .rcard .feat{align-items:flex-start;gap:8px;font-size:13.5px;line-height:1.25;letter-spacing:-.028em}
  .rcard .feat .ck{width:19px;height:19px;font-size:10px;border-radius:6px;margin-top:1px}
  .rcard .repl{margin-top:12px;font-size:8.5px;letter-spacing:.13em}
- .rcard .tools{margin-top:8px;gap:5px}
+ .rcard .tools{margin-top:8px;gap:5px;justify-content:center}
  .rcard .tools span{font-size:10.5px;padding:4px 9px;border-radius:100px}
  .rhead h2{font-size:clamp(24px,7vw,32px)}
 }
@@ -685,6 +688,8 @@ body.light .stepcard:hover{box-shadow:0 22px 46px -24px rgba(60,40,120,.5)}
  border-radius:11px;padding:8px 15px;min-width:150px;transition:transform .22s var(--ease),border-color .22s var(--ease)}
 .storebadge:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.34)}
 body.light .storebadge{border-color:rgba(16,14,26,.12)}
+body.light .btoggle .save{background:rgb(0 128 0 / 32%);color:rgb(69 157 69)}
+body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231)}
 .storebadge svg{width:22px;height:22px;flex:none}
 .storebadge .txt{line-height:1.15}
 .storebadge .s{display:block;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
@@ -770,9 +775,9 @@ body.light .storebadge{border-color:rgba(16,14,26,.12)}
   </div>
 
    <div class="aud">
-    <div class="acard" id="aud-creators"><h4><span class="d"></span>Creators</h4><p><s>Linktree, Stan, DocuSign, QuickBooks</s> — <b>gone. It's all in here.</b></p></div>
-    <div class="acard" id="aud-brands"><h4><span class="d"></span>Brands</h4><p><s>GRIN, Aspire, CreatorIQ, Asana, Frame.io</s> — <b>you won't miss them.</b></p></div>
-    <div class="acard" id="aud-agencies"><h4><span class="d"></span>Agencies</h4><p><s>Slack, Notion, Monday, Bill.com, Drive</s> — <b>consolidate the chaos.</b></p></div>
+    <div class="acard" id="aud-creators"><h4><span class="d"></span>Creators</h4><p><s>Linktree, Stan, DocuSign, QuickBooks</s> —<br><b>gone. It's all in here.</b></p></div>
+    <div class="acard" id="aud-brands"><h4><span class="d"></span>Brands</h4><p><s>GRIN, Aspire, CreatorIQ, Asana, Frame.io</s> —<br><b>you won't miss them.</b></p></div>
+    <div class="acard" id="aud-agencies"><h4><span class="d"></span>Agencies</h4><p><s>Slack, Notion, Monday, Bill.com, Drive</s> —<br><b>consolidate the chaos.</b></p></div>
    </div>
 
   <div class="stack">
@@ -1025,7 +1030,6 @@ body.light .storebadge{border-color:rgba(16,14,26,.12)}
 <section class="pricing" id="pricing">
  <div class="aur2"></div>
  <div class="wrap">
-  <p class="peyebrow">Pricing</p>
   <h2><span class="grad">Start free.</span> Level up when the work does.</h2>
   <p class="psub">Pick your side. Start free. Cancel the other 14 tools whenever you're ready.</p>
   <div class="ptoggle" id="ptoggle">
@@ -1186,17 +1190,18 @@ function renderPlans(aud){
 var swiperIdx=0;
 function initSwiper(){
  var grid=document.getElementById('pgrid');
+ var wrap=grid.parentNode;
  var ind=document.getElementById('pind');
  if(!grid||!ind)return;
  var plans=grid.querySelectorAll('.plan');
- if(window.innerWidth>900||plans.length<2){ind.style.display='none';grid.style.transform='';return;}
+ if(window.innerWidth>900||plans.length<2){ind.style.display='none';grid.style.transform='';wrap.ontouchstart=null;wrap.ontouchend=null;return;}
  ind.style.display='flex';
  ind.innerHTML=Array.from(plans).map(function(_,i){return '<span'+(i===swiperIdx?' class="on"':'')+'></span>'}).join('');
  if(swiperIdx>=plans.length)swiperIdx=0;
  ind.querySelectorAll('span').forEach(function(d,i){d.addEventListener('click',function(){goSlide(i)});});
  var sx=0;
- grid.ontouchstart=function(e){sx=e.touches[0].clientX};
- grid.ontouchend=function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){if(dx<0&&swiperIdx<plans.length-1)goSlide(swiperIdx+1);else if(dx>0&&swiperIdx>0)goSlide(swiperIdx-1)}};
+ wrap.ontouchstart=function(e){sx=e.touches[0].clientX};
+ wrap.ontouchend=function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){if(dx<0&&swiperIdx<plans.length-1)goSlide(swiperIdx+1);else if(dx>0&&swiperIdx>0)goSlide(swiperIdx-1)}};
  goSlide(swiperIdx);
 }
 function goSlide(i){
@@ -1255,7 +1260,7 @@ var BOLT='<svg class="ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/20
  h+='<div class="vs-tot vs-otherwise"><div class="vic">✕</div><div class="vs-lbl">What you\'d spend otherwise</div><div class="vs-amt">$'+total+'/mo</div></div>';
  h+='<div class="vs-tot vs-spark"><div class="vic">'+BOLT+'</div><div class="vs-lbl">All of it in <span class="grad">Spark Scout</span></div><div class="vs-amt">$'+VSPARK+'<span>/mo</span></div></div>';
  document.getElementById('vscard').innerHTML=h;
- document.querySelector('.vs-fine').insertAdjacentHTML('beforebegin','<p class="vs-save">That\'s <b>$'+save+'/mo</b> back in your pocket — about <b>$'+(save*12).toLocaleString()+'/yr</b>.</p>');
+  document.querySelector('.vs-fine').insertAdjacentHTML('beforebegin','<p class="vs-save">That\'s <b>$'+save+'/mo</b> back in your pocket —<br>about <b>$'+(save*12).toLocaleString()+'/yr</b>.</p>');
 })();
 
 </script>
