@@ -81,6 +81,11 @@
   body.light .btn-ghost:hover{border-color:rgba(16,14,26,.28)}
   .login{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s}
   .login:hover{color:var(--ink)}
+  .menubtn{display:none;background:none;border:1px solid var(--line);border-radius:11px;width:38px;height:38px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:none;transition:border-color .2s}
+  .menubtn span{width:16px;height:2px;border-radius:2px;background:var(--ink);transition:transform .3s var(--ease),opacity .2s}
+  .menubtn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menubtn.open span:nth-child(2){opacity:0}
+  .menubtn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   @media(max-width:900px){
     .nav{height:62px;white-space:nowrap}
     .logo{font-size:17px}
@@ -88,7 +93,12 @@
     .nav-cta{gap:10px}
     .themebtn{width:34px;height:34px}
     .btn-primary{padding:10px 16px;font-size:13.5px}
-    .nlinks,.nav .login{display:none}
+    .nlinks{position:fixed;top:62px;left:0;right:0;z-index:45;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:2px;padding:8px 20px 16px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .35s var(--ease),opacity .25s var(--ease)}
+    .nlinks.open{max-height:400px;opacity:1;pointer-events:auto}
+    .nlinks a{padding:13px 10px;font-size:15px;border-radius:10px;font-weight:500}
+    .nlinks a:hover{background:var(--chip)}
+    .nav .login{display:none}
+    .menubtn{display:flex}
     .ptoggle button{padding:8px 16px}
   }
   @media(max-width:480px){
@@ -113,24 +123,20 @@
   .ptoggle button{border:none;background:none;color:var(--muted);font-weight:500;font-size:14.5px;padding:11px 28px;border-radius:999px;cursor:pointer;transition:.2s var(--ease);font-family:'Poppins'}
   .ptoggle button:hover{color:var(--ink)}
   .ptoggle button.on{background:var(--grad);color:#fff;font-weight:600;box-shadow:0 6px 18px -6px rgba(124,92,255,.6)}
-  .btoggle{display:flex;width:fit-content;align-items:center;gap:4px;background:transparent;border:1px solid var(--line);
-   border-radius:999px;padding:4px;margin:0 auto 44px}
-  .btoggle button{border:none;background:none;color:var(--muted);font-family:'Poppins';font-weight:500;font-size:13.5px;
-   padding:9px 20px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.22s var(--ease)}
-  .btoggle button:hover{color:var(--ink)}
-  .btoggle button.on{background:var(--chip);color:var(--ink);font-weight:600}
+  .btoggle{display:flex;width:fit-content;align-items:center;gap:14px;margin:20px auto 32px}
+  .blbl{font-family:'Poppins';font-weight:600;font-size:14px;color:var(--muted);transition:color .2s;user-select:none}
+  .blbl.active{color:var(--ink)}
+  .bswitch{position:relative;width:52px;height:28px;border-radius:999px;border:none;background:var(--line);cursor:pointer;transition:background .3s var(--ease);flex:none;padding:0;flex-shrink:0}
+  .bswitch.on{background:var(--grad)}
+  .bthumb{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .3s var(--ease);box-shadow:0 2px 6px rgba(0,0,0,.2);pointer-events:none}
+  .bswitch.on .bthumb{transform:translateX(24px)}
   .btoggle .save{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
-   background:var(--grad);color:#fff;padding:4px 8px;border-radius:999px}
+   background:rgb(0 128 0 / 16%);color:rgb(0 255 0);padding:6px 12px;border-radius:999px}
   .pnote{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:-2px;min-height:15px}
   .price{margin-bottom:6px}
-  @media(max-width:768px){.btoggle{margin:0 auto 30px}.btoggle button{padding:9px 15px;font-size:13px}}
-  .btoggle{background:var(--chip)}
-  .btoggle button{padding:10px 24px;font-size:14px}
-  .btoggle button.on{background:var(--grad);color:#fff;font-weight:600;box-shadow:0 6px 18px -6px rgba(124,92,255,.6)}
-  .btoggle button.on .save{background:#fff;color:#14121C}
-  @media(max-width:768px){.btoggle button{padding:9px 16px;font-size:13px}}
+  @media(max-width:768px){.btoggle{margin:20px auto;gap:10px;justify-content:center}.blbl{font-size:13px}.bswitch{width:44px;height:24px}.bthumb{width:18px;height:18px}.bswitch.on .bthumb{transform:translateX(20px)}}
   .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto;text-align:left;align-items:start}
-  .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;height:100%}
   .plan.pop{border:1.6px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 26px 64px -24px rgba(124,92,255,.4)}
   .badge2{position:absolute;top:-12px;left:26px;background:var(--grad);color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
   .pname{font-weight:600;font-size:21px;letter-spacing:-.025em}
@@ -146,7 +152,7 @@
   @media(max-width:900px){.pgrid{grid-template-columns:1fr;max-width:440px}}
   @media(max-width:768px){
    .wrap{padding:0 18px}
-   .pricing{padding:60px 0 74px}
+   .pricing{padding:35px 0}
    .psub{font-size:15.5px}
    .ptoggle{margin:24px auto 10px;padding:4px}
    .ptoggle button{padding:10px 17px;font-size:13.5px}
@@ -155,7 +161,7 @@
    .price{font-size:38px}
    .pdesc{min-height:0}
   }
-  @media(max-width:520px){.wrap{padding:0 18px}.ptoggle button{padding:8px 14px;font-size:13.5px}.btoggle{width:100%;max-width:340px}.btoggle button{flex:1;justify-content:center;padding:10px 12px;font-size:13.5px}.pgrid{max-width:100%}.plan{padding:24px 20px}}
+  @media(max-width:520px){.wrap{padding:0 18px}.ptoggle button{padding:8px 14px;font-size:13.5px}.btoggle{width:100%;max-width:340px}.pgrid{max-width:100%}.plan{padding:24px 20px}}
 
   /* footer */
   .foot{padding:56px 0 44px;background:var(--bg);border-top:1px solid var(--line)}
@@ -203,6 +209,7 @@
    <button class="themebtn" id="themeBtn" aria-label="Toggle light/dark" onclick="toggleTheme()">☀</button>
    <a class="login" href="https://app.sparkscout.com/auth">Log in</a>
    <a class="btn btn-primary" href="https://app.sparkscout.com/auth?type=creator&tab=signup">Start Free</a>
+   <button class="menubtn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
    </div>
   </div>
  </header>
@@ -219,8 +226,10 @@
       <button data-aud="agencies">Agencies</button>
     </div>
     <div class="btoggle" id="btoggle" role="group" aria-label="Billing period">
-      <button data-b="monthly" class="on" aria-pressed="true">Monthly</button>
-      <button data-b="annual" aria-pressed="false">Annual <span class="save">Save 20%</span></button>
+      <span class="blbl active" data-b="monthly">Monthly</span>
+      <button class="bswitch" data-b="monthly" aria-pressed="true"><span class="bthumb"></span></button>
+      <span class="blbl" data-b="annual">Yearly</span>
+      <span class="save">Save 20%</span>
     </div>
     <div class="pgrid" id="pgrid"></div>
   </div>
@@ -259,6 +268,8 @@
 <script>
 function toggleTheme(){var l=document.body.classList.toggle('light');document.getElementById('themeBtn').textContent=l?'☾':'☀';}
 if(location.hash==='#light'){document.body.classList.add('light');var _tb=document.getElementById('themeBtn');if(_tb)_tb.textContent='☾';}
+var _mb=document.getElementById('menuBtn'),_ml=document.querySelector('.nlinks');
+if(_mb&&_ml){_mb.addEventListener('click',function(){var o=_ml.classList.toggle('open');_mb.classList.toggle('open',o);_mb.setAttribute('aria-expanded',o);_mb.setAttribute('aria-label',o?'Close menu':'Open menu');});_ml.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){_ml.classList.remove('open');_mb.classList.remove('open');_mb.setAttribute('aria-expanded','false');});});}
 
 /* pricing */
 var SIGNUP={creators:'https://app.sparkscout.com/auth?type=creator&tab=signup',brands:'https://app.sparkscout.com/auth?type=brand&tab=signup',agencies:'https://app.sparkscout.com/auth?type=agency&tab=signup'};
@@ -313,13 +324,14 @@ document.querySelectorAll('#ptoggle button').forEach(function(b){
   b.classList.add('on'); CURAUD=b.dataset.aud; renderPlans(CURAUD);
  });
 });
-document.querySelectorAll('#btoggle button').forEach(function(b){
- b.addEventListener('click',function(){
-  document.querySelectorAll('#btoggle button').forEach(function(x){x.classList.remove('on')});
-  b.classList.add('on'); BILL=b.dataset.b;
-  document.querySelectorAll('#btoggle button').forEach(function(x){x.setAttribute('aria-pressed', x.classList.contains('on')?'true':'false')});
-  renderPlans(CURAUD);
- });
+document.querySelector('#btoggle .bswitch').addEventListener('click',function(){
+ var ann=this.dataset.b==='monthly';
+ this.dataset.b=ann?'annual':'monthly';
+ BILL=this.dataset.b;
+ this.classList.toggle('on',ann);
+ this.setAttribute('aria-pressed',ann?'true':'false');
+ document.querySelectorAll('#btoggle .blbl').forEach(function(l){l.classList.toggle('active',l.dataset.b===BILL)});
+ renderPlans(CURAUD);
 });
 renderPlans('creators');
 
