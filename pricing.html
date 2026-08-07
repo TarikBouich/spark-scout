@@ -90,12 +90,6 @@
   .menubtn.open span:nth-child(2){opacity:0}
   .menubtn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
    @media(max-width:900px){
-    .nav{height:56px;white-space:nowrap}
-    .logo{font-size:17px}
-    .logo .spark{width:27px;height:27px;box-shadow:0 0 16px rgba(180,90,247,.3)}
-    .nav-cta{gap:10px}
-    .themebtn{width:34px;height:34px}
-    .btn-primary{padding:10px 16px;font-size:13.5px}
     .nlinks{position:fixed;top:56px;left:0;right:0;z-index:45;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:2px;padding:8px 20px 16px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .35s var(--ease),opacity .25s var(--ease)}
     .nlinks.open{max-height:400px;opacity:1;pointer-events:auto}
     .nlinks a{padding:13px 10px;font-size:15px;border-radius:10px;font-weight:500}
@@ -114,14 +108,16 @@
     .btn{padding:11px 18px;font-size:13.5px}
     .themebtn{width:36px;height:36px}
    }
-   @media(max-width:480px){
-    .wrap.nav{padding:0 16px}
-    .logo{font-size:15px;gap:8px}
-    .logo .spark{width:24px;height:24px}
-    .nav-cta{gap:8px}
+   @media(max-width:520px){
+    .wrap{padding:0 15px}
+    .nav{height:56px;gap:8px}
+    .logo{font-size:16px;gap:8px}
+    .logo .spark{width:32px;height:32px;border-radius:6px}
+    .nav-cta{gap:15px}
     .themebtn{width:32px;height:32px;font-size:13px}
     .btn-primary{padding:8px 13px;font-size:12.5px}
-  }
+    .login-icon svg{width:20px;height:20px}
+   }
 
   /* pricing */
   .pricing{--bg:#0B0A12;--ink:#F5F4F9;--muted:#9C99AD;--line:rgba(255,255,255,.09);--card:#16141F;--chip:#1B1927;--a2:#A855F7;--grad:linear-gradient(96deg,#7C5CFF 0%,#A855F7 34%,#E8629B 66%,#F97B4F 100%);--ease:cubic-bezier(.22,.61,.36,1);padding:88px 0 104px;border-top:1px solid var(--line);text-align:center;position:relative;overflow:hidden;background:var(--bg);color:var(--ink)}
@@ -177,7 +173,7 @@
    .price{font-size:38px}
    .pdesc{min-height:0}
   }
-  @media(max-width:520px){.wrap{padding:0 18px}.ptoggle button{padding:8px 14px;font-size:13.5px}.btoggle{width:100%;max-width:340px}.pgrid{max-width:100%}.plan{padding:24px 20px}}
+   @media(max-width:520px){.wrap{padding:0 15px}.ptoggle button{padding:10px 17px;font-size:13.5px}.btoggle{width:100%;max-width:340px}.pgrid{max-width:100%}.plan{padding:24px 20px}}
 
   .rcard{padding:15px 13px 16px;border-radius:16px;display:flex;flex-direction:column;align-items:center}
   .rcard .tools{margin-top:8px;gap:5px;justify-content:center}
