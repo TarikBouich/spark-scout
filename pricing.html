@@ -132,10 +132,12 @@
   .bswitch.on .bthumb{transform:translateX(24px)}
   .btoggle .save{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
    background:rgb(0 128 0 / 16%);color:rgb(0 255 0);padding:6px 12px;border-radius:999px}
+  .btoggle.monthly .save{color:rgb(82 140 85)}
   .pnote{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:-2px;min-height:15px}
   .price{margin-bottom:6px}
   @media(max-width:768px){.btoggle{margin:20px auto;gap:10px;justify-content:center}.blbl{font-size:13px}.bswitch{width:44px;height:24px}.bthumb{width:18px;height:18px}.bswitch.on .bthumb{transform:translateX(20px)}}
   .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto;text-align:left;align-items:start}
+  .pswiper{}
   .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;height:100%}
   .plan.pop{border:1.6px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 26px 64px -24px rgba(124,92,255,.4)}
   .badge2{position:absolute;top:-12px;left:26px;background:var(--grad);color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
@@ -149,7 +151,7 @@
   .pbtn.outline{border:1px solid var(--line);color:var(--ink)}
   .feat{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;margin-bottom:13px;color:var(--ink);font-weight:400}
   .feat .c{color:var(--a2);font-weight:700;flex:none;margin-top:1px}
-  @media(max-width:900px){.pgrid{grid-template-columns:1fr;max-width:440px}}
+   @media(max-width:900px){.pswiper{max-width:440px;margin:0 auto}.pgrid{display:flex;gap:15px;transition:transform .35s var(--ease);align-items:stretch}.pgrid .plan{min-width:0;width:calc(96% - 10px);flex:none;height:auto}.pind{display:none;justify-content:center;gap:8px;margin-top:20px}.pind span{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .3s var(--ease)}.pind span.on{background:var(--a2)}}
   @media(max-width:768px){
    .wrap{padding:0 18px}
    .pricing{padding:35px 0}
@@ -162,6 +164,10 @@
    .pdesc{min-height:0}
   }
   @media(max-width:520px){.wrap{padding:0 18px}.ptoggle button{padding:8px 14px;font-size:13.5px}.btoggle{width:100%;max-width:340px}.pgrid{max-width:100%}.plan{padding:24px 20px}}
+
+  .rcard{padding:15px 13px 16px;border-radius:16px;display:flex;flex-direction:column;align-items:center}
+  .rcard .tools{margin-top:8px;gap:5px;justify-content:center}
+  .btn{padding:11px 18px;font-size:12px}
 
   /* footer */
   .foot{padding:56px 0 44px;background:var(--bg);border-top:1px solid var(--line)}
@@ -183,15 +189,16 @@
   .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
    border-top:1px solid var(--line);padding-top:24px;
    font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  @media(max-width:768px){
-   .foot{padding:44px 0 36px}
-   .foot-top{flex-direction:column;align-items:flex-start;gap:20px}
-   .stores{width:100%}
-   .storebadge{flex:1;min-width:0;justify-content:center}
-   .foot-links{justify-content:flex-start;gap:16px 22px;margin:28px 0 22px}
-   .foot-links a{font-size:13.5px}
-   .foot-bottom{flex-direction:column;align-items:flex-start;gap:10px;font-size:10px;letter-spacing:.1em}
-  }
+   @media(max-width:768px){
+    .foot{padding:44px 0 36px}
+    .foot-top{flex-direction:column;align-items:center;gap:20px;text-align:center}
+    .foot .flogo{justify-content:center}
+    .stores{width:100%}
+    .storebadge{flex:1;min-width:0;justify-content:center}
+    .foot-links{justify-content:center;gap:16px 22px;margin:28px 0 22px}
+    .foot-links a{font-size:13.5px}
+    .foot-bottom{flex-direction:column;align-items:center;gap:10px;font-size:10px;letter-spacing:.1em;text-align:center}
+   }
 </style>
 </head>
 
@@ -202,9 +209,9 @@
 <header>
  <div class="wrap nav">
   <a class="logo" href="index.html"><svg class="spark ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssgHeader" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF3DFF"/><stop offset="40%" stop-color="#B569FF"/><stop offset="72%" stop-color="#4EA8FF"/><stop offset="100%" stop-color="#0D8FFF"/></linearGradient></defs><rect width="100" height="100" rx="19" fill="url(#ssgHeader)"/><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg>Spark Scout</a>
-  <nav class="nlinks">
-   <a href="#">Product</a><a href="#">For Creators</a><a href="#">For Brands</a><a href="#">For Agencies</a><a href="index.html#replaces">What we replace</a><a href="#pricing">Pricing</a>
-  </nav>
+   <nav class="nlinks">
+    <a href="javascript:void(0)">Product</a><a href="javascript:void(0)">For Creators</a><a href="javascript:void(0)">For Brands</a><a href="javascript:void(0)">For Agencies</a><a href="index.html#replaces" onclick="return true">What we replace</a><a href="javascript:void(0)">Pricing</a>
+   </nav>
   <div class="nav-cta">
    <button class="themebtn" id="themeBtn" aria-label="Toggle light/dark" onclick="toggleTheme()">☀</button>
    <a class="login" href="https://app.sparkscout.com/auth">Log in</a>
@@ -217,7 +224,6 @@
 <section class="pricing" id="pricing">
   <div class="aur2"></div>
   <div class="wrap">
-    <p class="peyebrow">Pricing</p>
     <h2><span class="grad">Start free.</span> Level up when the work does.</h2>
     <p class="psub">Pick your side. Start free. Cancel the other 14 tools whenever you're ready.</p>
     <div class="ptoggle" id="ptoggle">
@@ -226,12 +232,12 @@
       <button data-aud="agencies">Agencies</button>
     </div>
     <div class="btoggle" id="btoggle" role="group" aria-label="Billing period">
-      <span class="blbl active" data-b="monthly">Monthly</span>
-      <button class="bswitch" data-b="monthly" aria-pressed="true"><span class="bthumb"></span></button>
-      <span class="blbl" data-b="annual">Yearly</span>
+      <span class="blbl" data-b="monthly">Monthly</span>
+      <button class="bswitch on" data-b="annual" aria-pressed="false"><span class="bthumb"></span></button>
+      <span class="blbl active" data-b="annual">Yearly</span>
       <span class="save">Save 20%</span>
     </div>
-    <div class="pgrid" id="pgrid"></div>
+    <div class="pswiper"><div class="pgrid" id="pgrid"></div><div class="pind" id="pind"></div></div>
   </div>
 </section>
 </main>
@@ -273,7 +279,7 @@ if(_mb&&_ml){_mb.addEventListener('click',function(){var o=_ml.classList.toggle(
 
 /* pricing */
 var SIGNUP={creators:'https://app.sparkscout.com/auth?type=creator&tab=signup',brands:'https://app.sparkscout.com/auth?type=brand&tab=signup',agencies:'https://app.sparkscout.com/auth?type=agency&tab=signup'};
-var BILL='monthly';
+var BILL='annual';
 var PLANS={
  creators:[
   {name:"Free Plan",desc:"Get discovered and get paid — for free.",free:true,cta:"Try For Free →",
@@ -316,7 +322,35 @@ function renderPlans(aud){
    '<div class="pname">'+p.name+'</div><div class="pdesc">'+p.desc+'</div>'+
    priceBlock(p)+btn+feats+'</div>';
  }).join('');
+ initSwiper();
 }
+var swiperIdx=0;
+function initSwiper(){
+ var grid=document.getElementById('pgrid');
+ var ind=document.getElementById('pind');
+ if(!grid||!ind)return;
+ var plans=grid.querySelectorAll('.plan');
+ if(window.innerWidth>900||plans.length<2){ind.style.display='none';grid.style.transform='';return;}
+ ind.style.display='flex';
+ ind.innerHTML=Array.from(plans).map(function(_,i){return '<span'+(i===swiperIdx?' class="on"':'')+'></span>'}).join('');
+ if(swiperIdx>=plans.length)swiperIdx=0;
+ ind.querySelectorAll('span').forEach(function(d,i){d.addEventListener('click',function(){goSlide(i)});});
+ var sx=0;
+ grid.ontouchstart=function(e){sx=e.touches[0].clientX};
+ grid.ontouchend=function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){if(dx<0&&swiperIdx<plans.length-1)goSlide(swiperIdx+1);else if(dx>0&&swiperIdx>0)goSlide(swiperIdx-1)}};
+ goSlide(swiperIdx);
+}
+function goSlide(i){
+ var grid=document.getElementById('pgrid');
+ var ind=document.getElementById('pind');
+ var plans=grid.querySelectorAll('.plan');
+ if(i<0||i>=plans.length)return;
+ swiperIdx=i;
+ var w=plans[0].getBoundingClientRect().width+15;
+ grid.style.transform='translateX(-'+(i*w)+'px)';
+ ind.querySelectorAll('span').forEach(function(d,j){d.classList.toggle('on',j===i)});
+}
+window.addEventListener('resize',function(){initSwiper()});
 var CURAUD='creators';
 document.querySelectorAll('#ptoggle button').forEach(function(b){
  b.addEventListener('click',function(){
@@ -331,6 +365,7 @@ document.querySelector('#btoggle .bswitch').addEventListener('click',function(){
  this.classList.toggle('on',ann);
  this.setAttribute('aria-pressed',ann?'true':'false');
  document.querySelectorAll('#btoggle .blbl').forEach(function(l){l.classList.toggle('active',l.dataset.b===BILL)});
+ document.getElementById('btoggle').classList.toggle('monthly',BILL==='monthly');
  renderPlans(CURAUD);
 });
 renderPlans('creators');
