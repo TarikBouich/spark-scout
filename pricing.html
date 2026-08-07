@@ -87,13 +87,13 @@
   .menubtn.open span:nth-child(2){opacity:0}
   .menubtn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   @media(max-width:900px){
-    .nav{height:62px;white-space:nowrap}
+    .nav{height:56px;white-space:nowrap}
     .logo{font-size:17px}
     .logo .spark{width:27px;height:27px;box-shadow:0 0 16px rgba(180,90,247,.3)}
     .nav-cta{gap:10px}
     .themebtn{width:34px;height:34px}
     .btn-primary{padding:10px 16px;font-size:13.5px}
-    .nlinks{position:fixed;top:62px;left:0;right:0;z-index:45;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:2px;padding:8px 20px 16px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .35s var(--ease),opacity .25s var(--ease)}
+    .nlinks{position:fixed;top:56px;left:0;right:0;z-index:45;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:2px;padding:8px 20px 16px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .35s var(--ease),opacity .25s var(--ease)}
     .nlinks.open{max-height:400px;opacity:1;pointer-events:auto}
     .nlinks a{padding:13px 10px;font-size:15px;border-radius:10px;font-weight:500}
     .nlinks a:hover{background:var(--chip)}
@@ -137,8 +137,9 @@
   .price{margin-bottom:6px}
   @media(max-width:768px){.btoggle{margin:20px auto;gap:10px;justify-content:center}.blbl{font-size:13px}.bswitch{width:44px;height:24px}.bthumb{width:18px;height:18px}.bswitch.on .bthumb{transform:translateX(20px)}}
   .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px;margin:0 auto;text-align:left;align-items:start}
+  .pgrid .plan{height:100%}
   .pswiper{touch-action:pan-y}
-  .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;height:100%}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;height:auto}
   .plan.pop{border:1.6px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 26px 64px -24px rgba(124,92,255,.4)}
   .badge2{position:absolute;top:-12px;left:26px;background:var(--grad);color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
   .pname{font-weight:600;font-size:21px;letter-spacing:-.025em}
@@ -337,6 +338,9 @@ function initSwiper(){
  ind.style.display='flex';
  ind.innerHTML=Array.from(plans).map(function(_,i){return '<span'+(i===swiperIdx?' class="on"':'')+'></span>'}).join('');
  if(swiperIdx>=plans.length)swiperIdx=0;
+ var popIdx=0;
+ plans.forEach(function(p,i){if(p.classList.contains('pop'))popIdx=i});
+ if(swiperIdx===0)swiperIdx=popIdx;
  ind.querySelectorAll('span').forEach(function(d,i){d.addEventListener('click',function(){goSlide(i)});});
  var sx=0;
  wrap.ontouchstart=function(e){sx=e.touches[0].clientX};
