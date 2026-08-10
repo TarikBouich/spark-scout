@@ -107,7 +107,8 @@ body.light .login-icon:hover{color:var(--a2)}
 .hero .wrap{position:relative;z-index:1}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);background:rgba(255,255,255,.03);padding:9px 18px;border-radius:999px;margin-bottom:28px}
 body.light .eyebrow{background:rgba(16,14,26,.02)}
-.eyebrow b{color:var(--spark);font-weight:500}
+span.l1-text::after{content:" · ";}
+.eyebrow strong{color:var(--spark);font-weight:500}
 h1{font-weight:800;font-size:clamp(40px,6.2vw,76px);line-height:1.05;letter-spacing:-.045em;max-width:14ch;margin:0 auto}
 .sub{margin:26px auto 0;max-width:620px;font-size:clamp(16px,2vw,19px);color:var(--muted);line-height:1.6;font-weight:400}
 .sub b{color:var(--ink);font-weight:600}
@@ -125,8 +126,9 @@ h1{font-weight:800;font-size:clamp(40px,6.2vw,76px);line-height:1.05;letter-spac
 .acard h4{font-size:15px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
 .acard h4 .d{width:8px;height:8px;border-radius:50%;background:var(--gradsm)}
 .acard p{font-size:13.5px;color:var(--muted);line-height:1.55}
-.acard p s{color:#7d7a8d;text-decoration-color:rgba(232,98,155,.6);text-decoration-thickness:1.5px}
+.acard p s{color:#7d7a8d;text-decoration-color:rgba(232,98,155,.6);text-decoration-thickness:1.5px;}
 body.light .acard p s{color:#8b879c}
+.acard p i{font-style:normal;}
 .acard b{color:var(--ink);font-weight:600}
 @media(max-width:760px){.aud{grid-template-columns:1fr}}
 
@@ -140,7 +142,7 @@ body.light .acard p s{color:#8b879c}
 .marquees::after{right:0;background:linear-gradient(270deg,var(--bg) 0%,var(--bg) 24%,transparent 100%)}
 /* both rows get an identical compositing layer, so neither can diverge */
 .marquee{position:relative;overflow:hidden;background:var(--bg);transform:translateZ(0)}
-.track{display:flex;gap:12px;width:max-content;animation:scroll 42s linear infinite}
+.track{display:flex;gap:12px;width:max-content;animation:scroll 102s linear infinite}
 .track.alt{animation-name:scrollAlt}
 .marquee+.marquee{margin-top:12px}
 .marquee:hover .track{animation-play-state:paused}
@@ -425,7 +427,7 @@ body.light .vs-card{box-shadow:0 26px 64px -28px rgba(80,60,160,.28)}
 .dk .powered{display:flex;align-items:center;justify-content:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:#9A96A8;padding:18px 0 14px}
 .dk .powered svg{width:13px;height:13px;border-radius:3px}
 .dk .powered b{color:#7C3AED;font-weight:500}
-
+/* --- responsive --- */
 @media(max-width:1000px){
  .stage-in{grid-template-columns:1fr;gap:26px;max-width:340px}
  .rail.right{order:3}
@@ -520,6 +522,8 @@ body.light .final{background:linear-gradient(180deg,#EFEBFB 0%,#F7F6FB 100%)}
 
  .hero{padding:35px 0}
  .eyebrow{font-size:10px;letter-spacing:.11em;padding:8px 14px;margin-bottom:22px;line-height:1.5;flex-direction:column}
+ span.l1-text::after{content:"";}
+ span.l1-text::after{content:"";} 
  h1{max-width:none}
  .sub{font-size:16px;margin-top:20px}
  .cta{flex-direction:column;gap:10px;margin-top:28px}
@@ -753,15 +757,15 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
  <div class="wrap nav">
   <a class="logo" href="javascript:void(0)" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})"><svg class="spark ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssgHeader" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF3DFF"/><stop offset="40%" stop-color="#B569FF"/><stop offset="72%" stop-color="#4EA8FF"/><stop offset="100%" stop-color="#0D8FFF"/></linearGradient></defs><rect width="100" height="100" rx="19" fill="url(#ssgHeader)"/><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg>Spark Scout</a>
    <nav class="nlinks">
-    <a href="javascript:void(0)" title="Spark Scout for Creators" onclick="event.preventDefault();document.querySelectorAll('.acard').forEach(function(c){c.classList.remove('on')});document.getElementById('aud-creators').classList.add('on');document.getElementById('aud-creators').scrollIntoView({behavior:'smooth'})">For Creators</a><a href="javascript:void(0)" title="Spark Scout for Brands" onclick="event.preventDefault();document.querySelectorAll('.acard').forEach(function(c){c.classList.remove('on')});document.getElementById('aud-brands').classList.add('on');document.getElementById('aud-brands').scrollIntoView({behavior:'smooth'})">For Brands</a><a href="javascript:void(0)" title="Spark Scout for Agencies" onclick="event.preventDefault();document.querySelectorAll('.acard').forEach(function(c){c.classList.remove('on')});document.getElementById('aud-agencies').classList.add('on');document.getElementById('aud-agencies').scrollIntoView({behavior:'smooth'})">For Agencies</a><a href="javascript:void(0)" title="How you can save with Spark Scout" onclick="event.preventDefault();document.getElementById('replaces').scrollIntoView({behavior:'smooth'})">What we replace</a>    <a href="javascript:void(0)" title="Spark Scout Pricing" onclick="event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Pricing</a>
-     <div class="mob-auth"><a class="btn btn-primary" href="https://app.sparkscout.com/auth" target="_blank" title="Spark Scout Login" aria-label="Spark Scout Login : Opens in new window">Login</a><a class="btn btn-ghost" href="https://cal.com/team/spark-scout/demo" target="_blank" title="Book a Spark Scout Demo" aria-label="Book a Spark Scout Demo : Opens in new window">Book a demo</a></div>
+    <a href="javascript:void(0)" onclick="event.preventDefault();document.querySelectorAll('.acard').forEach(function(c){c.classList.remove('on')});document.getElementById('aud-creators').classList.add('on');document.getElementById('aud-creators').scrollIntoView({behavior:'smooth'})" title="Spark Scout for Creators">For Creators</a><a href="javascript:void(0)" onclick="event.preventDefault();document.querySelectorAll('.acard').forEach(function(c){c.classList.remove('on')});document.getElementById('aud-brands').classList.add('on');document.getElementById('aud-brands').scrollIntoView({behavior:'smooth'})" title="Spark Scout for Brands">For Brands</a><a href="javascript:void(0)" onclick="event.preventDefault();document.querySelectorAll('.acard').forEach(function(c){c.classList.remove('on')});document.getElementById('aud-agencies').classList.add('on');document.getElementById('aud-agencies').scrollIntoView({behavior:'smooth'})" title="Spark Scout for Agencies">For Agencies</a><a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('replaces').scrollIntoView({behavior:'smooth'})" title="How you can save with Spark Scout">What we replace</a>    <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" title="Spark Scout Pricing">Pricing</a>
+     <div class="mob-auth"><a class="btn btn-primary" href="https://app.sparkscout.com/auth" title="Spark Scout Login" target="_blank" aria-label="Spark Scout Login : Opens in new window">Login</a><a class="btn btn-ghost" href="https://cal.com/team/spark-scout/demo" target="_blank" title="Book a Spark Scout Demo" aria-label="Book a Spark Scout Demo : Opens in new window">Book a demo</a></div>
    </nav>
    <div class="nav-cta">
     <button class="themebtn" id="themeBtn" aria-label="Toggle light/dark" onclick="toggleTheme()">☀</button>
-    <a class="login-icon" href="https://app.sparkscout.com/auth" target="_blank" title="Spark Scout Login" aria-label="Spark Scout Login : Opens in new window"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+    <a class="login-icon" href="https://app.sparkscout.com/auth" aria-label="Login" target="_blank" aria-label="Spark Scout Login : Opens in new window"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
     <a class="btn btn-primary" href="https://app.sparkscout.com/auth" target="_blank" title="Spark Scout Login" aria-label="Spark Scout Login : Opens in new window">Login</a>
-    <a href="https://cal.com/team/spark-scout/demo" target="_blank" class="btn btn-ghost nlinks" title="Book a Spark Scout Demo" aria-label="Book a Spark Scout Demo : Opens in new window">Book a Demo</a>
-    <button class="menubtn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a href="https://cal.com/team/spark-scout/demo" class="btn btn-ghost nlinks" target="_blank" title="Book a Spark Scout Demo" aria-label="Book a Spark Scout Demo : Opens in new window">Book a Demo</a>
+    <button class="menubtn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-label="Toggle mobille menu open or close"><span></span><span></span><span></span></button>
    </div>
  </div>
 </header>
@@ -769,12 +773,12 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
 <section class="hero" id="top">
  <div class="aurora"></div>
  <div class="wrap">
-  <span class="eyebrow">For creators, brands &amp; agencies &nbsp;·&nbsp; <b>done paying for 14 logins</b></span>
+  <span class="eyebrow"><span class="l1-text">For creators, brands &amp; agencies</span> <strong>done paying for 14 logins</strong></span>
   <h1>Cancel everything.<br>It all lives <span class="grad">here</span> now.</h1>
   <p class="sub">Spark Scout is the one platform for creator partnerships — <b>discovery, portfolios, contracts, content, campaigns, and payments.</b> It replaces the 14+ tools you're duct-taping together, so every deal runs start to finish in one login.</p>
   <div class="cta">
    <a class="btn btn-primary btn-lg" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Sign up for Spark Scout FREE">Start Free →</a>
-   <a class="btn btn-ghost btn-lg" href="#replaces" title="How you can save with Spark Scout">See what we replace ↓</a>
+   <a class="btn btn-ghost btn-lg" href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('replaces').scrollIntoView({behavior:'smooth'})" title="How you can save with Spark Scout">See what we replace ↓</a>
   </div>
   <div class="microproof">
    <span><i class="dot"></i> No credit card</span>
@@ -783,9 +787,9 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
   </div>
 
    <div class="aud">
-    <div class="acard" id="aud-creators"><h4><span class="d"></span>Creators</h4><p><s>Linktree, Stan, DocuSign, QuickBooks</s> —<br><b>gone. It's all in here.</b></p></div>
-    <div class="acard" id="aud-brands"><h4><span class="d"></span>Brands</h4><p><s>GRIN, Aspire, CreatorIQ, Asana, Frame.io</s> —<br><b>you won't miss them.</b></p></div>
-    <div class="acard" id="aud-agencies"><h4><span class="d"></span>Agencies</h4><p><s>Slack, Notion, Monday, Bill.com, Drive</s> —<br><b>consolidate the chaos.</b></p></div>
+    <div class="acard" id="aud-creators"><h4><span class="d"></span>Creators</h4><p><s>Linktree, Stan, DocuSign, QuickBooks</s><i> — </i><b>gone. It's all in here.</b></p></div>
+    <div class="acard" id="aud-brands"><h4><span class="d"></span>Brands</h4><p><s>GRIN, Aspire, CreatorIQ, Asana, Frame.io</s><i> — </i><b>you won't miss them.</b></p></div>
+    <div class="acard" id="aud-agencies"><h4><span class="d"></span>Agencies</h4><p><s>Slack, Notion, Monday, Bill.com, Drive</s><i> — </i><b>consolidate the chaos.</b></p></div>
    </div>
 
   <div class="stack">
@@ -820,7 +824,7 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
    <p>You're paying <b>14 different companies</b> to run one creator business. Here's the bill — and here's Spark Scout.</p>
   </div>
   <div class="vs-card" id="vscard"></div>
-   <a class="vs-cta" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Sign up for Spark Scout FREE">Start My Free Trial →</a>
+  <a class="vs-cta" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Sign up for Spark Scout FREE">Start My Free Trial →</a>
   <p class="vs-fine">No credit card required · Cancel the other 14 whenever you want.</p>
  </div>
 </section>
@@ -1017,7 +1021,7 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
       <div class="t" id="capT">SparkLink</div>
       <div class="b" id="capB">One link. Everything you share lives here.</div>
      </div>
-     <button class="replay" id="replay">Replay the tap</button>
+     <button class="replay" id="replay" aria-label="Replay the button tap">Replay the tap</button>
     </div>
 
     <div class="rail right">
@@ -1040,14 +1044,14 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
  <div class="wrap">
   <h2><span class="grad">Start free.</span> Level up when the work does.</h2>
   <p class="psub">Pick your side. Start free. Cancel the other 14 tools whenever you're ready.</p>
-   <div class="ptoggle" id="ptoggle">
-    <button data-aud="creators" class="on" aria-label="Creator price plans">Creators</button>
-    <button data-aud="brands" aria-label="Brands price plans">Brands</button>
-    <button data-aud="agencies" aria-label="Agency price plans">Agencies</button>
-   </div>
-     <div class="btoggle" id="btoggle" role="group" aria-label="Billing period">
-      <span class="blbl" data-b="monthly">Monthly</span>
-      <button class="bswitch on" data-b="annual" aria-label="Billing period" aria-pressed="false"><span class="bthumb"></span></button>
+  <div class="ptoggle" id="ptoggle">
+   <button data-aud="creators" class="on">Creators</button>
+   <button data-aud="brands">Brands</button>
+   <button data-aud="agencies">Agencies</button>
+  </div>
+    <div class="btoggle" id="btoggle" role="group" aria-label="Billing period">
+     <span class="blbl" data-b="monthly">Monthly</span>
+     <button class="bswitch on" data-b="annual" aria-pressed="false"><span class="bthumb"></span></button>
      <span class="blbl active" data-b="annual">Yearly</span>
      <span class="save">Save 20%</span>
     </div>
@@ -1108,8 +1112,8 @@ body.light .btoggle.monthly .save{color:rgb(21 21 21);background:rgb(228 227 231
  <div class="wrap">
   <p class="peyebrow">Ready</p>
   <h2>The best partnerships <span class="grad">start with a spark.</span></h2>
-   <p>Bring discovery, creation, communication, management, and reporting together in one platform.</p>
-   <a class="btn btn-primary btn-lg" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Sign up for Spark Scout FREE">Start Free →</a>
+  <p>Bring discovery, creation, communication, management, and reporting together in one platform.</p>
+  <a class="btn btn-primary btn-lg" href="https://app.sparkscout.com/auth?type=creator&tab=signup" title="Sign up for Spark Scout FREE">Start Free →</a>
  </div>
 </section>
 
@@ -1142,10 +1146,10 @@ g.innerHTML=REPLACES.map(function(r){
  '<div class="repl">Replaces</div><div class="tools">'+r[1].map(function(t){return '<span>'+t+'</span>'}).join('')+'</div></div>';
 }).join('');
 var all=[];REPLACES.forEach(function(r){r[1].forEach(function(t){if(all.indexOf(t)<0)all.push(t)})});
-function chips(){return all.map(function(t){return '<span class="tool"><span class="x">✕</span><s>'+t+'</s></span>'}).join('')}
+function chips(){return all.map(function(t){return '<span class="tool"><span class="x">✕</span><i>'+t+'</i></span>'}).join('')}
 document.getElementById('t1').innerHTML=chips()+chips();
 var half=all.slice().reverse();
-function chips2(){return half.map(function(t){return '<span class="tool"><span class="x">✕</span><s>'+t+'</s></span>'}).join('')}
+function chips2(){return half.map(function(t){return '<span class="tool"><span class="x">✕</span><i>'+t+'</i></span>'}).join('')}
 document.getElementById('t2').innerHTML=chips2()+chips2();
 
 /* ===== pricing ===== */
@@ -1214,7 +1218,7 @@ function initSwiper(){
  var popIdx=0;
  plans.forEach(function(p,i){if(p.classList.contains('pop'))popIdx=i});
  if(swiperIdx===0)swiperIdx=popIdx;
- ind.querySelectorAll('span').forEach(function(d,i){d.addEventListener('click',function(){goSlide(i)});});
+ ind.querySelectorAll('span').forEach(function(d,i){d.addEventListener('click',function(){goSlide(i)})});
   if(!_wrapBound){wrap.addEventListener('touchstart',_onTS,{passive:true});wrap.addEventListener('touchmove',_onTM,{passive:false});wrap.addEventListener('touchend',_onTE,{passive:true});_wrapBound=true;}
   goSlide(swiperIdx);
 }
@@ -1383,7 +1387,7 @@ document.querySelectorAll('#faqList .faq-q').forEach(function(q){
 <footer class="foot">
  <div class="wrap">
   <div class="foot-top">
-   <a class="flogo" href="#"><svg class="ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssgFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF3DFF"/><stop offset="40%" stop-color="#B569FF"/><stop offset="72%" stop-color="#4EA8FF"/><stop offset="100%" stop-color="#0D8FFF"/></linearGradient></defs><rect width="100" height="100" rx="19" fill="url(#ssgFoot)"/><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg>Spark Scout</a>
+   <a class="flogo" href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('top').scrollIntoView({behavior:'smooth'})""><svg class="ss-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssgFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF3DFF"/><stop offset="40%" stop-color="#B569FF"/><stop offset="72%" stop-color="#4EA8FF"/><stop offset="100%" stop-color="#0D8FFF"/></linearGradient></defs><rect width="100" height="100" rx="19" fill="url(#ssgFoot)"/><path fill="#fff" d="M24.47 93.91C23.96 91.27 23.94 87.78 24.41 85.29C25.06 81.92 26.48 79.0 28.56 76.81C29.76 75.54 30.93 74.7 32.76 73.79C34.23 73.05 40.13 70.13 48.65 65.93C51.92 64.31 55.43 62.58 56.44 62.07C57.45 61.57 58.67 60.96 59.15 60.73C60.62 59.99 61.22 59.11 61.13 57.79C61.07 56.99 60.85 56.63 60.17 56.24C59.28 55.72 58.95 55.69 54.69 55.67L50.65 55.65 50.65 57.77L50.65 59.9 49.76 59.97C48.34 60.09 43.06 60.06 41.91 59.93C39.08 59.6 36.75 58.9 34.47 57.7C28.49 54.53 25.33 48.17 26.24 41.1C26.45 39.49 26.84 38.08 27.48 36.7C28.68 34.08 30.47 32.09 32.81 30.73C33.25 30.48 36.7 28.77 40.48 26.94C49.89 22.37 61.82 16.56 65.8 14.61C67.62 13.72 71.03 12.09 73.38 10.99C75.73 9.9 78.13 8.77 78.72 8.49C79.32 8.22 79.81 8.01 79.83 8.02C79.85 8.04 79.94 8.52 80.04 9.08C80.28 10.47 80.37 13.84 80.2 15.26C79.59 20.39 77.09 24.76 73.19 27.51C71.83 28.47 71.22 28.79 60.88 33.9C56.59 36.02 51.33 38.63 49.19 39.7C47.05 40.76 44.47 42.04 43.46 42.53C42.45 43.02 41.49 43.55 41.31 43.71C40.86 44.11 40.59 44.8 40.59 45.53C40.58 46.65 41.15 47.32 42.37 47.65C42.89 47.8 43.73 47.83 46.83 47.83L50.65 47.83 50.65 45.28L50.65 42.73 52.35 42.66C58.85 42.37 62.47 42.93 65.92 44.76C69.63 46.71 72.12 49.69 73.48 53.8C74.41 56.64 74.6 60.27 73.97 63.18C73.09 67.19 70.86 70.6 67.62 72.87C66.38 73.74 65.91 73.98 53.57 80.1C53.24 80.26 50.1 81.82 46.59 83.56C43.08 85.31 37.5 88.07 34.2 89.7C30.9 91.33 27.38 93.08 26.39 93.58L24.58 94.5 24.47 93.91Z"/></svg>Spark Scout</a>
    <div class="stores">
     <!-- Stand-in badges. Replace each <a> with the official artwork:
          Google Play  https://play.google.com/intl/en_us/badges/
@@ -1398,11 +1402,11 @@ document.querySelectorAll('#faqList .faq-q').forEach(function(q){
   </div>
 
   <nav class="foot-links">
-   <a href="policies/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
-   <a href="policies/terms-of-service.html" title="Terms of Service">Terms of Service</a>
-   <a href="policies/payment-terms.html" title="Payment Terms">Payment Terms</a>
-   <a href="policies/account-deletion.html" title="Account Deletion">Account Deletion</a>
-   <a href="policies/data-sharing-opt-out.html" title="Data Sharing Opt-Out">Data Sharing Opt-Out</a>
+   <a href="policies/privacy-policy" title="Privacy Policy">Privacy Policy</a>
+   <a href="policies/terms-of-service" title="Terms of Service">Terms of Service</a>
+   <a href="policies/payment-terms" title="Payment Terms">Payment Terms</a>
+   <a href="policies/account-deletion" title="Account Deletion">Account Deletion</a>
+   <a href="policies/data-sharing-opt-out" title="Data Sharing Opt-Out">Data Sharing Opt-Out</a>
   </nav>
 
   <div class="foot-bottom">
