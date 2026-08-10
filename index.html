@@ -142,7 +142,7 @@ body.light .acard p s{color:#8b879c}
 .marquees::after{right:0;background:linear-gradient(270deg,var(--bg) 0%,var(--bg) 24%,transparent 100%)}
 /* both rows get an identical compositing layer, so neither can diverge */
 .marquee{position:relative;overflow:hidden;background:var(--bg);transform:translateZ(0)}
-.track{display:flex;gap:12px;width:max-content;animation:scroll 102s linear infinite}
+.track{display:flex;gap:12px;width:max-content;animation:scroll 102s linear infinite;will-change:transform}
 .track.alt{animation-name:scrollAlt}
 .marquee+.marquee{margin-top:12px}
 .marquee:hover .track{animation-play-state:paused}
