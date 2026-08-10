@@ -1151,6 +1151,7 @@ document.getElementById('t1').innerHTML=chips()+chips();
 var half=all.slice().reverse();
 function chips2(){return half.map(function(t){return '<span class="tool"><span class="x">✕</span><i>'+t+'</i></span>'}).join('')}
 document.getElementById('t2').innerHTML=chips2()+chips2();
+requestAnimationFrame(function(){document.querySelectorAll('.track').forEach(function(t){t.style.animation='none';t.offsetHeight;t.style.animation=''})});
 
 /* ===== pricing ===== */
 var SIGNUP={creators:'https://app.sparkscout.com/auth?type=creator&tab=signup',brands:'https://app.sparkscout.com/auth?type=brand&tab=signup',agencies:'https://app.sparkscout.com/auth?type=agency&tab=signup'};
